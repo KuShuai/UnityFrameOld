@@ -12,11 +12,9 @@ public class MonoSingleton<T>: MonoBehaviour where T : MonoBehaviour,IMonoSingle
         {
             if (instance == null)
             {
-                GameObject obj = new GameObject(typeof(T).Name);
-                DontDestroyOnLoad(obj);
-                instance = obj.AddComponent<T>();
+                instance = Util.CreateDonDestroyObj<T>(typeof(T).Name);
                 instance.SingletonInit();
-                Debug.Log("Create");
+                Debug.LogWarning("Create MonoSingleton");
             }
             return instance;
         }

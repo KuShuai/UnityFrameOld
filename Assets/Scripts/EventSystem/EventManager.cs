@@ -22,7 +22,7 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
 
     Dictionary<EventID, EventCallBack> _eventCallback;
 
-    class EventItemOnce
+    public class EventItemOnce
     {
         public EventCallBackOnce callback = null;
         public bool processed = false;
@@ -34,7 +34,7 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
         }
     }
 
-    Dictionary<EventID, List<EventCallBackOnce>> _eventCallbackOnce_execute;
+    Dictionary<EventID, List<EventItemOnce>> _eventCallbackOnce_execute;
 
     public void Reset()
     {
@@ -46,7 +46,7 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
     public void SingletonInit()
     {
         _eventCallback = new Dictionary<EventID, EventCallBack>();
-        _eventCallbackOnce_execute = new Dictionary<EventID, List<EventCallBackOnce>>();
+        _eventCallbackOnce_execute = new Dictionary<EventID, List<EventItemOnce>>();
 
         _cachedEvent = new List<EventItem>();
     }
@@ -85,28 +85,28 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
         }
     }
 
-    public EventCallBackOnce RegisterEventOnce(EventID eventId, EventCallBackOnce callBackParam)
+    public EventItemOnce RegisterEventOnce(EventID eventId, EventCallBackOnce callBackParam)
     {
-        List<EventCallBackOnce> callBackOncesList = null;
+        List<EventItemOnce> callBackOncesList = null;
         if (!_eventCallbackOnce_execute.TryGetValue(eventId,out callBackOncesList))
         {
-            callBackOncesList = new List<EventCallBackOnce>();
+            callBackOncesList = new List<EventItemOnce>();
             _eventCallbackOnce_execute.Add(eventId, callBackOncesList);
         }
-        var func = new EventCallBackOnce(callBackParam);
+        var func = new EventItemOnce(callBackParam);
         callBackOncesList.Add(func);
 
         return func;
     }
 
-    public void UnregisterEventOnce(EventID eventId,EventCallBackOnce processer)
+    public void UnregisterEventOnce(EventID eventId, EventCallBackOnce processer)
     {
-        List<EventCallBackOnce> callBackOncesList;
+        List<EventItemOnce> callBackOncesList;
         if (_eventCallbackOnce_execute.TryGetValue(eventId,out callBackOncesList))
         {
             for (int i = 0; i < callBackOncesList.Count; i++)
             {
-                if (callBackOncesList[i] == processer)
+                if (callBackOncesList[i].callback == processer)
                 {
                     callBackOncesList.RemoveAt(i);
                     return;
@@ -145,7 +145,7 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
                 for (int i = callBackOnces.Count - 1; i >= 0; --i)
                 {
                     var it = callBackOnces[i];
-                    if (it.callback != null)
+                    if (it != null)
                     {
                         if (it.callback(eventId, param))
                         {

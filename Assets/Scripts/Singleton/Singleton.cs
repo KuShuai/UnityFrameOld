@@ -14,7 +14,7 @@ public class Singleton<T> where T:class, ISingleton
             {
                 instance = Activator.CreateInstance<T>();
                 instance.SingletonInit();
-
+                Debug.LogWarning("Create Singleton");
             }
             return instance;
         }

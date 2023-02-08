@@ -1,7 +1,8 @@
 /Library/
 /[Tt]emp/
 /[Oo]bj/
-/[Rr]ecordings
+/[Rr]ecordings/
+/[Ll]ogs
 
 *.csproj
 *.unityproj
