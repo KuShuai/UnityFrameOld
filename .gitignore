@@ -15,6 +15,7 @@
 *.apk
 *.unitypackage
 *.vsconfig
+*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
