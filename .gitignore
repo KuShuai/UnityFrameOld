@@ -1,0 +1,23 @@
+/Library/
+/[Tt]emp/
+/[Oo]bj/
+/[Rr]ecordings
+
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.apk
+*.unitypackage
+*.vsconfig
+
+# Unity3D generated meta files
+*.pidb.meta
+
+# Unity3D Generated File On Crash Reports
+sysinfo.txt

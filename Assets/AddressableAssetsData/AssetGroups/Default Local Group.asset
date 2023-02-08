@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d9979023eb6ca0f408d2dcd6dbb65967
+  m_SerializeEntries:
+  - m_GUID: 573ac53c334415945bf239de2c2f0511
+    m_Address: PlayerControllerFPS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3bb96f39e4e66ba438c0942c2f8bf2d1
+    m_Address: Canvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 75f3b539eedeeb547893dd480d5754da, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9160263cef7a21d4f8a4db3eec3d8d48, type: 2}
+    - {fileID: 11400000, guid: bc261424daa7b5a41b0cb6a5bb22fbec, type: 2}
