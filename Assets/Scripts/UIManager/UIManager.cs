@@ -22,7 +22,7 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
     /// 所有打开的UI
     /// </summary>
     public static Dictionary<string, GameObject> _dictUI = new Dictionary<string, GameObject>();
-    private static List<GameObject> _panelStack = new List<GameObject>();
+    private static List<UIPanel> _panelStack = new List<UIPanel>();
     private static bool _reorder = false;
 
     private void Update()
@@ -30,7 +30,7 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         OnPanelStackChanged();
     }
 
-    private static void OnPanelStackChanged()
+    private void OnPanelStackChanged()
     {
         if (!_reorder)
         {
@@ -73,7 +73,7 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
     /// <summary>
     /// 获取创建UI根节点
     /// </summary>
-    private static void CreateRoot()
+    private void CreateRoot()
     {
         if (_root == null)
         {
@@ -90,9 +90,40 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         }
     }
 
-    public void OpenUI(string uiName)
+    private GameObject CreateUIObj(string name)
     {
+        GameObject obj = null;
+        return obj;
+    }
+
+    private void AttachToParent(GameObject obj, GameObject root)
+    {
+
+    }
+
+
+
+    public GameObject OpenUI(string uiName)
+    {
+        if (_dictUI.ContainsKey(uiName))
+            return null;
         CreateRoot();
+        if (_root == null)
+            return null;
+
+        GameObject obj = CreateUIObj(uiName);
+        if (obj == null)
+            return null;
+
+        AttachToParent(obj, _root);
+
+        _dictUI.Add(uiName, obj);
+        _panelStack.Add(obj.GetComponent<UIPanel>());
+
+        //刷新层级
+        _reorder = true;
+
+        return obj;
     }
 
     public void CloseUI(string uiName)
