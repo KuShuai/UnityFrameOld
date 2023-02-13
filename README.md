@@ -55,4 +55,10 @@ _________
  [`百度`](http://www.baidu.com)
 
 
+```Java
+public static void main(string[] args){} //Java
+```
+```c
+int main(int argc,char *argv[]) //c
+```
 
