@@ -38,6 +38,7 @@ _________
 >>>>平衡二叉树
 >>>>>满二叉树
 >>图
+
 [![baidu]](http://baidu.com)  
 [baidu]:http://www.baidu.com/img/bdlogo.gif "百度Logo" 
 
