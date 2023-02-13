@@ -19,7 +19,8 @@ _________
 #### 四级标题
 ##### 五级标题
 ###### 六级标题
-####### 七级标题
+
+
 [百度](https://www.baidu.com/ "悬停显示文本")
 
 * 名称
@@ -40,6 +41,6 @@ _________
 >>图
 
 ![baidu](http://www.baidu.com/img/bdlogo.gif "百度Logo")
-[![baidu]](http://baidu.com)  
+[baidu](http://baidu.com)  
 
 
