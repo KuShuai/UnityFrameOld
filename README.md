@@ -39,7 +39,7 @@ _________
 >>>>>满二叉树
 >>图
 
-![](http://www.baidu.com/img/bdlogo.gif "ABCD")
-![](https://blog.csdn.net/zhao_jing_bo/article/details/68063070 "README.md创建教学")
+[![baidu]](https://blog.csdn.net/zhao_jing_bo/article/details/68063070)
+[baidu]:http://www.baidu.com/img/bdlogo.gif "点击跳转README.md创建教学")
 
 
