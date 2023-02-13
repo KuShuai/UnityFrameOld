@@ -9,6 +9,13 @@ public class RSPathUtil
 
     public const string Ext = "";
     public static string UIPath = "UIPrefabs/";
+    public static string ConfigsPath = "Configs/";
+
+    public static string Config(string name)
+    {
+        Builder.Clear();
+        return Builder.Append(PathUtil.AssetPath(ConfigsPath)).Append(name).Append(Ext).ToString();
+    }
 
     public static string UI(string name)
     {
