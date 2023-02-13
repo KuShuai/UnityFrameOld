@@ -41,7 +41,7 @@ _________
 >>图
 
 
-[![baidu]](http://baidu.com)  
-![baidu](http://www.baidu.com/img/bdlogo.gif "百度Logo")
+[![](http://www.baidu.com/img/bdlogo.gif "百度Logo")](http://baidu.com)  
+
 
 
