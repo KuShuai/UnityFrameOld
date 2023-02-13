@@ -62,3 +62,10 @@ public static void main(string[] args){} //Java
 int main(int argc,char *argv[]) //c
 ```
 
+```
+12312323
+12312312323123
+1231231231312313
+1231231
+```
+
