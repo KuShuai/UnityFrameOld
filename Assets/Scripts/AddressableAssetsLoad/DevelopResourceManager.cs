@@ -81,4 +81,14 @@ public class DevelopResourceManager : ResourceManager
         _resources.Add(asset_path, obj);
         return obj;
     }
+
+    public override void Unload(string asset_path)
+    {
+        base.Unload(asset_path);
+        Object obj = null;
+        if (_resources.TryGetValue(asset_path,out obj))
+        {
+            _resources.Remove(asset_path);
+        }
+    }
 }

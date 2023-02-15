@@ -8,6 +8,34 @@ public class MainStart : MonoBehaviour
     void Start()
     {
         ResourceManager.CreateInstance();
-        UIManager.Instance.OpenUI("");
+        UIManager.Instance.Init();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            UIManager.OpenUI<UIPanel1>(UIPanelEnum.UIPanel1);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            UIManager.OpenUI<UIPanel2>(UIPanelEnum.UIPanel2);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UIManager.OpenUI<UIPanel3>(UIPanelEnum.UIPanel3);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            UIManager.OpenUI<UIPanel4>(UIPanelEnum.UIPanel4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            UIManager.CloseUI(UIPanelEnum.UIPanel1);
+            UIManager.CloseUI(UIPanelEnum.UIPanel2);
+            UIManager.CloseUI(UIPanelEnum.UIPanel3);
+            UIManager.CloseUI(UIPanelEnum.UIPanel4);
+        }
     }
 }

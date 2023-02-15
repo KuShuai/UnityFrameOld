@@ -5,11 +5,8 @@ using UnityEngine;
 
 public enum UILayer 
 {
-    Panel = 0,
-    Popup,
-    Nutify,
-    NewbieGuide,
-    OverGuide,
+    Fixed = 0,
+    Normal,
     Top,
 
     Count

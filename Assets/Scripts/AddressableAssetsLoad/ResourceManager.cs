@@ -18,7 +18,7 @@ public class ResourceManager :MonoBehaviour
 
     public virtual void Init() { }
     public virtual void Release() { }
-    
+
     public T Load<T>(string asset_name) where T : UnityEngine.Object
     {
         UnityEngine.Object obj = Load(asset_name);
@@ -44,4 +44,5 @@ public class ResourceManager :MonoBehaviour
     }
 
 
+    public virtual void Unload(string asset_path) { }
 }

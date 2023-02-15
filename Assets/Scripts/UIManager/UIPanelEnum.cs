@@ -7,4 +7,9 @@ public enum UIPanelEnum
     None,
     UIMainPanel,
 
+    UIPanel1,
+    UIPanel2,
+    UIPanel3,
+    UIPanel4
+
 }
