@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class UIPanel4 : UIPanel
 {
-    public override void OnPreLoad()
+    public override void OnAwake()
     {
-        base.OnPreLoad();
+        base.OnAwake();
     }
 
-    public override void OnLoad()
+    public override void OnStart()
     {
-        base.OnLoad();
+        base.OnStart();
     }
 
     public override void OnEvent(EventID event_id, EventParam param)

@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2044092476
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: uiprefabs/uipanel1.assetbundle
+      Dependencies: {}
+    Info_1:
+      Name: uiprefabs/uipanel2.assetbundle
+      Dependencies: {}
+    Info_2:
+      Name: uiprefabs/uipanel3.assetbundle
+      Dependencies: {}
+    Info_3:
+      Name: uiprefabs/uipanel4.assetbundle
+      Dependencies: {}
+    Info_4:
+      Name: uiprefabs/uiroot.assetbundle
+      Dependencies: {}

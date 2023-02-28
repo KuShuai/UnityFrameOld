@@ -21,8 +21,8 @@ public class UIWidget : MonoBehaviour
     private List<EventID> _eventList = null;
 
     //uiFunction
-    public virtual void OnPreLoad() { }
-    public virtual void OnLoad() { }
+    public virtual void OnAwake() { }
+    public virtual void OnStart() { }
     public virtual void OnUpdate() { }
     public virtual void OnEvent(EventID event_id,EventParam param) { }
     public virtual void OnClose() { }
@@ -32,7 +32,7 @@ public class UIWidget : MonoBehaviour
     private void Awake()
     {
         InitWidget();
-        OnPreLoad();
+        OnAwake();
     }
 
     void InitWidget()
@@ -56,7 +56,7 @@ public class UIWidget : MonoBehaviour
 
     private void Start()
     {
-        OnLoad();
+        OnStart();
     }
 
     private void Update()

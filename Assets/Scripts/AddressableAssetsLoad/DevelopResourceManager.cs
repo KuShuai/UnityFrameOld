@@ -70,8 +70,11 @@ public class DevelopResourceManager : ResourceManager
             Debug.LogErrorFormat("get assetdatabase name failed : {0}", asset_path);
             return null;
         }
-
+#if UNITY_EDITOR
         obj = AssetDatabase.LoadAssetAtPath(full_path, typeof(UnityEngine.Object));
+#else
+
+#endif
         if (obj == null)
         {
             Debug.LogErrorFormat("load asset failed from assetdatabase : {0}", full_path);

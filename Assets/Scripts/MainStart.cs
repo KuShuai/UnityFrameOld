@@ -37,5 +37,10 @@ public class MainStart : MonoBehaviour
             UIManager.CloseUI(UIPanelEnum.UIPanel3);
             UIManager.CloseUI(UIPanelEnum.UIPanel4);
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ReadStreamingAssetsExcelManager.Instance.CreateAllData();
+        }
     }
 }
