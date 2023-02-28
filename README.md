@@ -1,4 +1,4 @@
-Assets/Editor/AssetBundleBuider Bundle打包
+Assets/Editor/AssetBundleBuider Bundle打包\n
 Assets/Scripts/UIManager/AddressableAssetsLoad/ResourceManager 资源加载
 
 
