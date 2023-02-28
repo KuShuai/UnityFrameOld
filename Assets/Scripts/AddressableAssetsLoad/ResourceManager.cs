@@ -12,7 +12,23 @@ public class ResourceManager :MonoBehaviour
     {
         if (instance == null)
         {
-            instance = Util.CreateDonDestroyObj<DevelopResourceManager>("Resource|Develop");
+#if UNITY_EDITOR
+            bool deploy_AA = UnityEditor.EditorPrefs.GetBool("Deploy_AA", false);
+            bool deploy_AB = UnityEditor.EditorPrefs.GetBool("Deploy_AB", false);
+            if (deploy_AA)
+            {
+                instance = Util.CreateDonDestroyObj<DeployAAResourceManager>("Resource|DeployAA");
+            }
+            else if (deploy_AB)
+            {
+                instance = Util.CreateDonDestroyObj<DeployABResourceManager>("Resource|DeployAB");
+            }
+            else
+            {
+                instance = Util.CreateDonDestroyObj<DevelopResourceManager>("Resource|Develop");
+            }
+#else
+#endif
         }
     }
 
