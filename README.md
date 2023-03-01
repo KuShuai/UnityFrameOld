@@ -1,8 +1,19 @@
 Assets/Editor/AssetBundleBuider Bundle打包
-
+*****
 Assets/Scripts/UIManager/AddressableAssetsLoad/ResourceManager 资源加载
 
+Assets/Scripts/UIManager/AddressableAssetsLoad/DeployABResourceManager AssetBundle资源加载
 
+Assets/Scripts/UIManager/AddressableAssetsLoad/DeployAAResourceManager Addressable资源加载
+
+Assets/Scripts/UIManager/AddressableAssetsLoad/DevelopResourceManager 开发资源加载
+*****
+Assets/Scripts/AddressableAssetsLoad/VersionManager 版本管理
+*****
+Assets/Scripts/GameDriver.cs  程序逻辑驱动器，一些有先后顺序的程序逻辑放到这里执行
+*****
+*******
+*******
 readme.md
 
 #一级标题
