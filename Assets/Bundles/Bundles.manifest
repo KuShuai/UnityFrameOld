@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 607162164
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: f3ab17385411b684588a231bbe3bb737.assetbundle
+      Dependencies: {}
+    Info_1:
+      Name: 573ac53c334415945bf239de2c2f0511.assetbundle
+      Dependencies: {}
+    Info_2:
+      Name: 5c8ffe2d1d6aa434ab02bebd16bb4f9d.assetbundle
+      Dependencies: {}
+    Info_3:
+      Name: d6c2444bedb8ce349a74d1f52ac5b803.assetbundle
+      Dependencies: {}
+    Info_4:
+      Name: 0cda0f79ad267c845a638968c825dd46.assetbundle
+      Dependencies: {}
+    Info_5:
+      Name: 007b4f79a3610f3499aaedc0a4cd6f38.assetbundle
+      Dependencies: {}
+    Info_6:
+      Name: b3a0d448309d8ba41ad79d9d2d31c13a.assetbundle
+      Dependencies: {}
+    Info_7:
+      Name: 3bb96f39e4e66ba438c0942c2f8bf2d1.assetbundle
+      Dependencies: {}
+    Info_8:
+      Name: index
+      Dependencies: {}

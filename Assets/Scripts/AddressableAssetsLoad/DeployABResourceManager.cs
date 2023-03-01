@@ -16,6 +16,29 @@ public class DeployABResourceManager : ResourceManager
     {
         base.Init();
         last_time = Time.realtimeSinceStartup;
+        try
+        {
+            AssetBundle index_bundle = _LoadBundle(ResourceManagerConfig.kIndexFileName);
+            LoadIndexFile(index_bundle.LoadAsset<TextAsset>(ResourceManagerConfig.kIndexFileName));
+            index_bundle.Unload(false);
+            index_bundle = null;
+
+            Debug.Log("begin to load mainfest");
+
+            AssetBundle manifest_bundle = _LoadBundle("Bundles");
+            _manifest = manifest_bundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+            manifest_bundle.Unload(false);
+            manifest_bundle = null;
+
+            Debug.Log("manifest loaded");
+
+            //LoadShaders();//LoadBundle(ResourceManagerConfig.kShaderBundleName)
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError(ex.Message);
+            Debug.LogError(ex.StackTrace);
+        }
     }
 
     public override Object Load(string asset_name)
@@ -32,21 +55,26 @@ public class DeployABResourceManager : ResourceManager
     {
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bundle_name">  @"index"; </param>
+    /// <returns></returns>
     private AssetBundle _LoadBundle(string bundle_name)
     {
-        bundle_name = ResourceManagerConfig.FormatString("Bundles/{0}", bundle_name);
+        bundle_name = ResourceManagerConfig.FormatString("Bundles/{0}", bundle_name);   //==================Bundles/index
 
-        string bundle_load_path = VersionManager.Instance.LocateFilePath(bundle_name);
+        string bundle_load_path = VersionManager.Instance.LocateFilePath(bundle_name);  //../PersistentDataPath|StreamingAssetsPath/Bundles/index
         if (string.IsNullOrEmpty(bundle_load_path))
         {
             Debug.LogErrorFormat("get load bundle path failed 1: {0}", bundle_name);
             return null;
         }
-
+        Debug.Log("============="+bundle_load_path);
         var bundle = AssetBundle.LoadFromFile(bundle_load_path);
         if (bundle == null)
         {
-            Debug.LogErrorFormat("load bundle failed :{0}", bundle_load_path);
+            Debug.LogErrorFormat("load index bundle failed :{0}", bundle_load_path);
             return null;
         }
         return bundle;

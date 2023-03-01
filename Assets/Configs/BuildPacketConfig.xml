@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BundleConfig>
+  <platform>
+	<NoSDK name="NOSDK" target="Android" channel="1001" bundleId="com.cookiegame.dc.nosdk" />
+	<AppStore name="APPS" target="iOS" channel="1002" bundleId="com.cookiegame.dc.apps" />
+  </platform>
+</BundleConfig>

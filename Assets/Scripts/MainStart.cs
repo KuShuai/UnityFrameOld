@@ -7,8 +7,6 @@ public class MainStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResourceManager.CreateInstance();
-        UIManager.Instance.Init();
     }
 
     private void Update()

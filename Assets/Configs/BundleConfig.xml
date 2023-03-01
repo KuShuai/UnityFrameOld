@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BundleConfig>
+  <version>1</version>
+  <info>
+	  <audio folder="/Audio" single="" />
+	  <CardCamera folder="/Camera/CardCamera" single="" />
+	  <cameraAction folder="/Camera/CameraAction" single="" />
+     <ChangeClothCamera folder="/Camera/ChangeClothCamera" single="" />
+    <StreetShowCamera folder="/Camera/StreetShowCamera" single=""/>
+	  <femaleAnimCards folder="/Character/Female/Animation/Cards" single="" />
+    <femaleAnimDance folder="/Character/Female/Animation/Dance" single="" />
+    <femaleAnimChangeCloth folder="/Character/Female/Animation/ChangeCloth" single="" />
+    <femaleAnimCommon folder="/Character/Female/Animation/Common" single="" />
+    <femaleAnimExpression folder="/Character/Female/Animation/Expression" single="" />
+	  <femaleSkeleton folder="/Character/Female/Skeleton" single="" />
+    <maleAnimCards folder="/Character/Male/Animation/Cards" single="" />
+    <maleAnimDance folder="/Character/Male/Animation/Dance" single="" />
+    <maleAnimChangeCloth folder="/Character/Male/Animation/ChangeCloth" single="" />
+    <maleAnimCommon folder="/Character/Male/Animation/Common" single="" />
+    <maleAnimExpression folder="/Character/Male/Animation/Expression" single="" />
+    <maleSkeleton folder="/Character/Male/Skeleton" single="" />
+	<charactorModels folder="CharactorModels" single="" />
+	  <configs folder="/Configs" single="" />
+	  <gestures folder="/Gestures" single="allgestures" />
+	  <ui folder="UI" single="" />
+    <room folder="/Room" single="" />
+    <icon folder="/Icon" single="" />
+    <emoji folder="/Icon/Emoji" single=""/>
+    <streetShowNotes folder="/StreetShowNotes" single=""/>
+    <playNotes folder="/PlayNotes" single=""/>
+    <effect folder="/Effect" single=""/>
+  </info>
+</BundleConfig>

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1674708200
+CRC: 4078697668
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ef822166a91c970fe0f394e1fe7b0107
+    Hash: fdf34e4eff4a2cea04a2b16625aa9980
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 133e72ad67efa0d296e56467da83095d
+    Hash: 9eecaa29e3b584553199917753857d80
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -26,9 +26,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  Script: {fileID: 11500000, guid: 3ce9220a58f27634b85325210c57dc59, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5f15fae91e798bb41abc1e22ac5db3d8, type: 3}
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -59,5 +59,5 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.SpriteState
 Assets:
-- Assets/PrefabResources/UIPrefabs/UIPanel3.prefab
+- Assets/PrefabResources/UIPrefabs/UIPanel4.prefab
 Dependencies: []

@@ -16,6 +16,9 @@ public class ResourceManagerConfig
     public static string TemporaryCachePath = Application.temporaryCachePath;
 #endif
 
+
+    public const string kVersionFileName = @"version";
+
     //88fa71f0a6e0dfedbb46d91cc0b37a50
     public const string kIndexFileName = @"index";
 
@@ -40,6 +43,31 @@ public class ResourceManagerConfig
         get
         {
             return string.Format("{0}", PersistentDataPath);
+        }
+    }
+
+
+    /// <summary>
+    /// version indx
+    /// </summary>
+    public static string kVersionFileInnerPath
+    {
+        get
+        {
+            return string.Format("{0}/{1}", StreamingAssetsPath, kVersionFileName);
+        }
+    }
+    public static string kVersionFileExtPath
+    {
+        get { return string.Format("{0}/{1}", PersistentDataPath, kVersionFileName); }
+    }
+
+
+
+    public static string AssetDownloadPath
+    {
+        get {
+            return string.Format("{0}/Download", TemporaryCachePath);
         }
     }
 

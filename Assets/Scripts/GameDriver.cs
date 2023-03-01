@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class GameDriver : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool CriDevelopMode;
+
+    private void Awake()
     {
-        
+        CriDevelopMode = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        StartCoroutine(InitialData());   
+    }
+
+    IEnumerator InitialData()
+    {
+        if (!CriDevelopMode)
+        {
+            VersionManager.Instance.SingletonInit();
+
+            ResourceManager.CreateInstance();
+        }
+        yield return 0;
+
+        EnterGame();
+    }
+
+    public void EnterGame()
+    {
+        UIManager.Instance.Init();
     }
 }
