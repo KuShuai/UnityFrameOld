@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class GameDriver : MonoBehaviour
 {
+    public static GameDriver Inst { private set; get; }
     private bool CriDevelopMode;
+
+    public bool DevLoginMode = false;
+    public string[] HostURL = null;
+    public bool Login = false;
 
     private void Awake()
     {
+        Inst = this;
+        EventManager.Instance.SingletonInit();
+
+
         CriDevelopMode = false;
     }
 
@@ -20,13 +29,18 @@ public class GameDriver : MonoBehaviour
     {
         if (!CriDevelopMode)
         {
+            AppChannelHelper.LoadAppChannel();
+
             VersionManager.Instance.SingletonInit();
 
             ResourceManager.CreateInstance();
         }
         yield return 0;
 
-        EnterGame();
+        Debug.LogError("******检查版本");
+        //检查版本
+        VersionManager.Instance.CheckingVersion();
+
     }
 
     public void EnterGame()

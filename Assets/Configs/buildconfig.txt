@@ -288,7 +288,7 @@
 					"build_target": "develop"
 				},
 				"sdk_path": "",
-				"verify_urls": ["http://134.175.211.83"],
+				"verify_urls": ["http://192.168.3.125"],
 				"patch_urls": ["http://patch-cn-dev.oss-cn-beijing.aliyuncs.com/android"],
 				"splashes": [{
 					"tex": "Assets/AppResource/cookie_logo.jpg",

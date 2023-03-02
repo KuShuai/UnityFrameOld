@@ -93,7 +93,7 @@ public class ResourceManagerConfig
         return _stringBuilder.AppendFormat(format, arg0, arg1, arg2).ToString();
     }
 
-    public static string FormatString(string format, object[] args)
+    public static string FormatString(string format,params object[] args)
     {
         _stringBuilder.Clear();
         return _stringBuilder.AppendFormat(format, args).ToString();

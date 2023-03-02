@@ -1,0 +1,12 @@
+{
+	"Code":"0",
+	"MsgData":"1",
+	"Version":"1",
+	"Announcement":"1",
+	"ServerStatus":"1",
+	"ServerList":{
+		"Info":"111"
+	},
+	"Code":"1",
+	"Code":"1",
+}

@@ -25,3 +25,16 @@ public class StringEventParam : EventParam
         value = param;
     }
 }
+
+public class IntEventParam : EventParam
+{
+    public int value = 0;
+    public IntEventParam()
+    {
+
+    }
+    public IntEventParam(int param)
+    {
+        value = param;
+    }
+}
