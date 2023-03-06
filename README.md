@@ -1,5 +1,6 @@
 ##Assets
-#ConfigTools
+
+##ConfigTools
 
 Assets/Editor/AssetBundleBuider Bundle打包
 *****
