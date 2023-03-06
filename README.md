@@ -34,8 +34,8 @@
     >UI的基类，主要功能为：
     >在Editor模式下通过特殊标记（R_*）标记所需要控制管理的UI节点，添加到Links List中，在Awark时，通过遍历将所有所需节点通过其HashCode进行统一管理，方便UI界面对所有节点的查找。
     >添加OnEvent虚方法，让每一个派生类界面重写去实现
-  
-  >解决很多重复性代码编写  
+    >UIWidgetEditor
+    >>方便代码编写生成解决很多重复性代码编写  
 
 ### 3：AssetBundle
 * 什么是Assetbundle
@@ -57,6 +57,25 @@
   >
   >官方建议1-2M比较合适，5G普及后：5-10M，大于10M会有一些问题；
 ### 4：版本控制
+* A
+* B
+* C
+* D
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Assets/Editor/AssetBundleBuider Bundle打包
