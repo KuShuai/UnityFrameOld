@@ -1,15 +1,13 @@
 ## 文件夹介绍
-### Assets
-#### 工程文件夹
+* Assets
+  >工程文件夹
 
-### ConfigTools
-#### 数据表工具
+* ConfigTools
+  >数据表工具
 
-### Packages
-####
-
-### ProjectSettings
-### UserSettings
+* Packages
+* ProjectSettings
+* UserSettings
 
 ## 功能介绍
 
