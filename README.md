@@ -17,29 +17,23 @@
 ### 2：UI管理
 ### 3：AssetBundle
 * 什么是Assetbundle
-  >
   >是一套Unity虚拟的文件系统，是Asset的一个被压缩过的集合；
   >
   >通过调整一些参数我们即可打各个平台的AB；
   >
   >帮我们解决了文件之间的依赖关系；
-  >
 * AssetBundle的识别
-  >
   >通过Library文件中的md5，或者原文件对应的meta的md5；
   >
   >在跟AB一起生成出来的.manifest文件中的AssetFileHash可以判断、或者.manifest中还原CRC字段可以判断AB的完整性；
   >
   >而打出的AB包所对应的md5在打包过程中会由于一些不稳定的因素，而导致不准确；
-  >
 * AssetBundled的大小怎么样是最合适的？不走极端。
-  >
   >过大：不容易被下载下来，下载一半因为各种原因失败，得重新下载；
   >
   >过小：AssetBundle中的有效数据会非常小，AssetBundle也会非常多；
   >
   >官方建议1-2M比较合适，5G普及后：5-10M，大于10M会有一些问题；
-  >
 ### 4：版本控制
 
 
