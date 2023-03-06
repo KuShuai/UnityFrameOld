@@ -146,6 +146,15 @@ public class AutoBuild : Editor
                 continue;
             }
 
+            ///////////////////////////////////场景需要单个打包
+            ///其他内容按文件夹打包
+            ///
+
+
+
+
+            
+
         }
 
         foreach (var item in bundleDatas.Values)

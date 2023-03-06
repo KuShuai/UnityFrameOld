@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> where T:class, ISingleton
+public class Singleton<T> where T : class, ISingleton
 {
     private static T instance;
     public static T Instance

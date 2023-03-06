@@ -30,7 +30,7 @@ public class AssetBundleBuilder : Editor
         builds.AddRange(GetBuildMap("UIPrefabs", false));
 
         //BuildPipeline.BuildAssetBundles(_bundlePath, builds.ToArray(), _buildOption, EditorUserBuildSettings.activeBuildTarget);
-        BuildPipeline.BuildAssetBundles(_bundlePath, builds.ToArray(), BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows);
+        BuildPipeline.BuildAssetBundles(_bundlePath, builds.ToArray(), BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
     }
 
     private static AssetBundleBuild[] GetBuildMap(string folder,bool single)
@@ -80,6 +80,10 @@ public class AssetBundleBuilder : Editor
                     continue;
                 }
                 string assetName = Path.GetFileNameWithoutExtension(file);
+                Debug.Log("==============");
+                Debug.Log(folder + "/" + assetName + ".assetbundle");
+                Debug.Log(file);
+                Debug.Log(assetName);
                 build.assetBundleName = folder + "/" + assetName + ".assetbundle";
                 build.assetNames = new string[] { file };
                 build.addressableNames = new string[] { assetName };
@@ -92,20 +96,11 @@ public class AssetBundleBuilder : Editor
 
     private static bool CanBundle(string ext)
     {
-        bool rt = false;
         if (ext == ".meta")
         {
             return false;
         }
-        if (ext == ".prefab" ||
-            ext == ".shader" ||
-            ext == ".ttf" || ext == ".TTF" ||
-            ext == ".ttc" || ext == ".TTC" ||
-            ext == ".otf" || ext == ".OTF" )
-        {
-            return true;
-        }
-        return rt;
+        return true;
     }
 
 }
