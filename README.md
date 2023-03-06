@@ -15,7 +15,7 @@
 
 ### 1：
 ### 2：功能框架
-#### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem 点击跳转到文件夹路径)
+#### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹路径")
 
 [百度](https://www.baidu.com/ "悬停显示文本")
   >[`跳转到文件夹路径`]（https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem）
