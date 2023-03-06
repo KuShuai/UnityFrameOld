@@ -1,8 +1,27 @@
+## 文件夹介绍
 ### Assets
-
+#### 工程文件夹
 
 ### ConfigTools
 #### 数据表工具
+
+### Packages
+####
+
+### ProjectSettings
+### UserSettings
+
+## 功能介绍
+
+### 1：
+### 2：UI管理
+### 3：AssetBundle
+#### AssetBundled的大小怎么样是最合适的？不走极端。
+##### 过大：不容易被下载下来，下载一半因为各种原因失败，得重新下载。
+##### 过小：AssetBundle中的有效数据会非常小，AssetBundle也会非常多。
+##### 官方建议1-2M比较合适，5G普及后：5-10M，大于10M会有一些问题。
+### 4：版本控制
+
 
 Assets/Editor/AssetBundleBuider Bundle打包
 *****
