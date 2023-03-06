@@ -15,16 +15,20 @@
 
 ### 1：
 ### 2：功能框架
-#### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹路径")
+#### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹")
 * EventManager.cs
   >通告注册、管理、监听委托（Delegate）来实现模块之间的方法回调、参数传递。
 * EventID.cs
 * EventParamter.cs
-#### UIManager框架
-  >
-  >解决UI界面管理;
-  >
-  >
+#### [`UIManager框架`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/UIManager "点击跳转到文件夹")
+  * UIManager.cs
+    >UI界面管理,通过实例化界面，通过UIConfig中注册的UILayer信息修改Canvas.sortingOrder控制UI的显示层级；统一管理实现UI界面的打开与关闭
+#### [`UIPanel界面`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/UIPanel "点击跳转文件夹")  
+  * UIWidget.cs
+    >UI的基类，主要功能为：
+    >在Editor模式下通过特殊标记（R_*）标记所需要控制管理的UI节点，添加到Links List中，在Awark时，通过遍历将所有所需节点通过其HashCode进行统一管理，方便UI界面对所有节点的查找。
+    >添加OnEvent虚方法，让每一个派生类界面重写去实现
+  
   >解决很多重复性代码编写  
 
 ### 3：AssetBundle
