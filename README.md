@@ -17,8 +17,8 @@
 ### 2：UI管理
 ### 3：AssetBundle
 * 什么是Assetbundle
->1233123
->wewe2132
+  >1233123
+  >wewe2132
 * AssetBundled的大小怎么样是最合适的？不走极端。
 >过大：不容易被下载下来，下载一半因为各种原因失败，得重新下载。
 >过小：AssetBundle中的有效数据会非常小，AssetBundle也会非常多。
