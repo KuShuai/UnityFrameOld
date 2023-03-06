@@ -1,19 +1,7 @@
-## 文件夹介绍
-* Assets
-  >工程文件夹
+# 功能介绍
 
-* ConfigTools
-  >数据表工具
-
-* Packages
-* ProjectSettings
-* UserSettings
-
-## 功能介绍
-
-### 1：
-### 2：功能框架
-#### [`单例基类`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/Singleton "点击跳转到文件夹")
+## 1：功能框架
+### [`单例基类`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/Singleton "点击跳转到文件夹")
   >用于快速实现单例类基类
 * ISingleton
   >单例接口
@@ -21,15 +9,15 @@
   >继承于MonoBehaviour的单例基类
 * Singleton
   >普通单例基类
-#### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹")
+### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹")
 * EventManager.cs
   >通告注册、管理、监听委托（Delegate）来实现模块之间的方法回调、参数传递。
 * EventID.cs
 * EventParamter.cs
-#### [`UIManager框架`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/UIManager "点击跳转到文件夹")
+### [`UIManager框架`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/UIManager "点击跳转到文件夹")
   * UIManager.cs
     >UI界面管理,通过实例化界面，通过UIConfig中注册的UILayer信息修改Canvas.sortingOrder控制UI的显示层级；统一管理实现UI界面的打开与关闭
-#### [`UIPanel界面`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/UIPanel "点击跳转文件夹")  
+### [`UIPanel界面`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/UIPanel "点击跳转文件夹")  
   * UIWidget.cs
     >UI的基类，主要功能为：
     >在Editor模式下通过特殊标记（R_*）标记所需要控制管理的UI节点，添加到Links List中，在Awark时，通过遍历将所有所需节点通过其HashCode进行统一管理，方便UI界面对所有节点的查找。
@@ -37,7 +25,7 @@
     >UIWidgetEditor
     >>方便代码编写生成解决很多重复性代码编写  
 
-### 3：AssetBundle
+## 2：AssetBundle
 * 什么是Assetbundle
   >是一套Unity虚拟的文件系统，是Asset的一个被压缩过的集合；
   >
@@ -56,13 +44,23 @@
   >过小：AssetBundle中的有效数据会非常小，AssetBundle也会非常多；
   >
   >官方建议1-2M比较合适，5G普及后：5-10M，大于10M会有一些问题；
-### 4：版本控制
+## 3：版本控制
 * A
 * B
 * C
 * D
 
 
+# 文件夹介绍
+* Assets
+  >工程文件夹
+
+* ConfigTools
+  >数据表工具
+
+* Packages
+* ProjectSettings
+* UserSettings
 
 
 
