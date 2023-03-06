@@ -13,6 +13,14 @@
 
 ### 1：
 ### 2：功能框架
+#### [`单例基类`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/Singleton "点击跳转到文件夹")
+  >用于快速实现单例类基类
+* ISingleton
+  >单例接口
+* MonoSingleton
+  >继承于MonoBehaviour的单例基类
+* Singleton
+  >普通单例基类
 #### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹")
 * EventManager.cs
   >通告注册、管理、监听委托（Delegate）来实现模块之间的方法回调、参数传递。
