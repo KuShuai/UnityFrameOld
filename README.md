@@ -16,9 +16,10 @@
 ### 1：
 ### 2：功能框架
 #### [`EventManager`](https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem "点击跳转到文件夹路径")
-
-[百度](https://www.baidu.com/ "悬停显示文本")
-  >[`跳转到文件夹路径`]（https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem）
+*EventManager.cs
+  >通告注册、管理、监听委托（Delegate）来实现模块之间的方法回调、参数传递。
+*EventID.cs
+*EventParamter.cs
 #### UIManager框架
   >
   >解决UI界面管理;
