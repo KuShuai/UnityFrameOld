@@ -14,8 +14,15 @@
 ## 功能介绍
 
 ### 1：
-### 2：UIManager框架
-#### 解决UI界面管理杂乱无序，解决很多重复性代码编写的
+### 2：功能框架
+#### EventManager [`跳转到文件夹路径`]（https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem）
+  >123
+#### UIManager框架
+  >
+  >解决UI界面管理;
+  >
+  >
+  >解决很多重复性代码编写  
 
 ### 3：AssetBundle
 * 什么是Assetbundle
