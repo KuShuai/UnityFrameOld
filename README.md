@@ -15,8 +15,9 @@
 
 ### 1：
 ### 2：功能框架
-#### EventManager [`跳转到文件夹路径`]（https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem）
-  >123
+#### EventManager 
+[`跳转到文件夹路径`]（https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem）
+  >[`跳转到文件夹路径`]（https://github.com/KuShuai/UnityFrame/tree/main/Assets/Scripts/EventSystem）
 #### UIManager框架
   >
   >解决UI界面管理;
