@@ -1,3 +1,6 @@
+##Assets
+#ConfigTools
+
 Assets/Editor/AssetBundleBuider Bundle打包
 *****
 Assets/Scripts/UIManager/AddressableAssetsLoad/ResourceManager 资源加载
