@@ -14,7 +14,9 @@
 ## 功能介绍
 
 ### 1：
-### 2：UI管理
+### 2：UIManager框架
+#### 解决UI界面管理杂乱无序，解决很多重复性代码编写的
+
 ### 3：AssetBundle
 * 什么是Assetbundle
   >是一套Unity虚拟的文件系统，是Asset的一个被压缩过的集合；
