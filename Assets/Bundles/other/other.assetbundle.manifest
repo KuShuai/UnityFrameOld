@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4028356106
+CRC: 1103771708
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3be3e638eeacff61e9a37b31ea825353
+    Hash: 1c101ea762de101c23b1f0010a81f0dc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f30e3f5fbcade42568d5c16efbcff92e
+    Hash: 888782bc00799488fc716705973eca89
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,9 +15,17 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 20
   Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 87f6dfceb3e39a947a312f7eeaa2a113, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4eb578550bc4f824e97f0a72eac1f3a5, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 143
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Unity.RenderPipelines.Core.Runtime
@@ -33,5 +41,5 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
   ClassName: UnityEngine.Rendering.HighDefinition.ObsoleteLightLoopSettings
 Assets:
-- Assets/PrefabResources/UIPrefabs/UIRoot.prefab
+- Assets/PrefabResources/Other/PlayerControllerFPS.prefab
 Dependencies: []

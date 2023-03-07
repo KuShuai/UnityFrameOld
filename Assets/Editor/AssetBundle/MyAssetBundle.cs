@@ -1,14 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
 public class MyAssetBundle : Editor
 {
-    [MenuItem("Bundle/MyBuildUi")]
+    private static StringBuilder IndexFileContent = new StringBuilder();
+    [MenuItem("Bundle/My/Clear")]
+    static void ClearBundle()
+    {
+        string BundleExportPath = Application.dataPath + "/Bundles";
+
+        if (Directory.Exists(BundleExportPath))
+        {
+            Directory.Delete(BundleExportPath, true);
+        }
+    }
+    [MenuItem("Bundle/My/Build")]
     static void MyABundleUI(){
-        string BundleExportPath = Application.dataPath + "/../MyBundle";
+
+        IndexFileContent.Clear();
+
+        string BundleExportPath = Application.dataPath + "/Bundles";
         string BundlePath = "Assets/PrefabResources";
 
         if (Directory.Exists(BundleExportPath))
@@ -32,27 +47,57 @@ public class MyAssetBundle : Editor
             List<string> assetNames = new List<string>();
             List<string> addressableNames = new List<string>();
 
+            build.assetBundleName = dirValue[dirValue.Length - 1] + "/" + dirValue[dirValue.Length - 1] + ".assetbundle";
+            Debug.Log("==============================================");
+            //Debug.Log("assetBundleName add:" + dirValue[dirValue.Length - 1] + "/" + dirValue[dirValue.Length - 1] + ".assetbundle");
             for (int n = 0; n < files.Length; n++)
             {
                 if (Path.GetExtension(files[n]) == ".meta")
                 {
                     continue;
                 }
-                string assetName = Path.GetFileNameWithoutExtension(files[n]);
-                Debug.Log(files[n]);
+                string assetName = GetAddressableName(files[n]);
+                //Deug.Log("assetNames add:" + files[n]);
+                //Debug.Log("addressableNames add:" + assetName);
                 assetNames.Add(files[n]);
                 addressableNames.Add(assetName);
-
+                Debug.LogFormat(">>>>>{0}:{1}", assetName, build.assetBundleName);
+                IndexFileContent.AppendFormat("{0}:{1}", assetName, build.assetBundleName);
+                IndexFileContent.AppendLine();
             }
 
-            build.assetBundleName = dirValue[dirValue.Length - 1] + "/"+ dirValue[dirValue.Length - 1] + ".assetbundle";
             build.assetNames= assetNames.ToArray();
             build.addressableNames = addressableNames.ToArray();
 
             builds.Add(build);
         }
 
+        {
+            string index_file_path = string.Format("{0}{1}.txt", "Assets/PrefabResources/", ResourceManagerConfig.kIndexFileName);
+            File.WriteAllText(index_file_path, IndexFileContent.ToString());
+
+            AssetBundleBuild indexbuild = new AssetBundleBuild();
+            indexbuild.assetBundleName = ResourceManagerConfig.kIndexFileName;
+            indexbuild.assetNames = new string[] { index_file_path };
+            indexbuild.addressableNames = new string[] { ResourceManagerConfig.kIndexFileName };
+
+            builds.Add(indexbuild);
+        }
         BuildPipeline.BuildAssetBundles(BundleExportPath, builds.ToArray(), BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
 
+        Debug.Log("build success count " + builds.Count);
+    }
+
+    private static string GetAddressableName(string file_path)
+    {
+        string addressable_name = file_path;
+        addressable_name = addressable_name.Replace("Assets/PrefabResources\\", "");
+        int dot_pos = addressable_name.LastIndexOf('.');
+        if (dot_pos != -1)
+        {
+            int count = addressable_name.Length - dot_pos;
+            addressable_name = addressable_name.Remove(dot_pos, count);
+        }
+        return addressable_name;
     }
 }

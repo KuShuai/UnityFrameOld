@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ResourceManager :MonoBehaviour
 {
+    public delegate void ProcRes(Object res);
+
     public delegate void ProcTextAsssetRes(byte[] bytes);
 
     private static ResourceManager instance;

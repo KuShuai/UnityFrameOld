@@ -1,15 +1,19 @@
 ManifestFileVersion: 0
-CRC: 4125017564
+CRC: 641320678
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 26c3b92f34c9b30574652e83f87c2943
+    Hash: 58578a169e8acf32b7ab5a4997a30100
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a41fb49d66bc92e27c0bd7ff5bff1d38
+    Hash: bc069aa027c738f140dc7fdbb5bece8d
 HashAppended: 0
 ClassTypes:
 - Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -26,9 +30,17 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3ce9220a58f27634b85325210c57dc59, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 064b1e829283bbb4abedbb754550f25b, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9f774cbfd3c077544b3181687c97ac27, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f15fae91e798bb41abc1e22ac5db3d8, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -42,6 +54,18 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.BitArray128
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.FrameSettings
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.FrameSettingsOverrideMask
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.HDPhysicalCamera
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.ObsoleteFrameSettings
+- AssemblyName: Unity.RenderPipelines.HighDefinition.Runtime
+  ClassName: UnityEngine.Rendering.HighDefinition.ObsoleteLightLoopSettings
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
 - AssemblyName: UnityEngine.UI
@@ -59,5 +83,9 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.SpriteState
 Assets:
+- Assets/PrefabResources/UIPrefabs/UIRoot.prefab
+- Assets/PrefabResources/UIPrefabs/UIPanel4.prefab
+- Assets/PrefabResources/UIPrefabs/UIPanel3.prefab
 - Assets/PrefabResources/UIPrefabs/UIPanel2.prefab
+- Assets/PrefabResources/UIPrefabs/UIPanel1.prefab
 Dependencies: []

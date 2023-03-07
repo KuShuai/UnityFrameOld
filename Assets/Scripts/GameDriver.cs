@@ -32,14 +32,19 @@ public class GameDriver : MonoBehaviour
             AppChannelHelper.LoadAppChannel();
 
             VersionManager.Instance.SingletonInit();
-
-            ResourceManager.CreateInstance();
+    
         }
         yield return 0;
 
         Debug.LogError("******检查版本");
         //检查版本
         VersionManager.Instance.CheckingVersion();
+
+
+        ResourceManager.CreateInstance();
+        ResourceManager.Instance.Init();
+
+        EnterGame();
 
     }
 

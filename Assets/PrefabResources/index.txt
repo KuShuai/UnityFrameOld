@@ -1,8 +1,7 @@
-Configs/TestConfig:f3ab17385411b684588a231bbe3bb737.assetbundle
-Other/PlayerControllerFPS:573ac53c334415945bf239de2c2f0511.assetbundle
-UIPrefabs/UIPanel1:5c8ffe2d1d6aa434ab02bebd16bb4f9d.assetbundle
-UIPrefabs/UIPanel2:d6c2444bedb8ce349a74d1f52ac5b803.assetbundle
-UIPrefabs/UIPanel3:0cda0f79ad267c845a638968c825dd46.assetbundle
-UIPrefabs/UIPanel4:007b4f79a3610f3499aaedc0a4cd6f38.assetbundle
-UIPrefabs/UIRoot:b3a0d448309d8ba41ad79d9d2d31c13a.assetbundle
-UIPrefabs/UICommonPrefabs/Canvas:3bb96f39e4e66ba438c0942c2f8bf2d1.assetbundle
+Configs/TestConfig:Configs/Configs.assetbundle
+Other/PlayerControllerFPS:Other/Other.assetbundle
+UIPrefabs/UIPanel1:UIPrefabs/UIPrefabs.assetbundle
+UIPrefabs/UIPanel2:UIPrefabs/UIPrefabs.assetbundle
+UIPrefabs/UIPanel3:UIPrefabs/UIPrefabs.assetbundle
+UIPrefabs/UIPanel4:UIPrefabs/UIPrefabs.assetbundle
+UIPrefabs/UIRoot:UIPrefabs/UIPrefabs.assetbundle
