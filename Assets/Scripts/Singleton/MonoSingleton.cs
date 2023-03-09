@@ -19,4 +19,9 @@ public class MonoSingleton<T>: MonoBehaviour where T : MonoBehaviour,IMonoSingle
             return instance;
         }
     }
+
+    public virtual void Awake()
+    {
+        instance = this as T;    
+    }
 }

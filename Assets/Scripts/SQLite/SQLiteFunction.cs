@@ -16,6 +16,7 @@ public class SQLiteFunction
 
     private static Dictionary<string, SqliteInfo> sqlite_dic_info = new Dictionary<string, SqliteInfo>();
 
+
     class SqliteInfo
     {
         private string _sqliteName;
@@ -60,6 +61,11 @@ public class SQLiteFunction
         }
     }
 
+    /// <summary>
+    /// 添加、建立sqlite数据库连接
+    /// </summary>
+    /// <param name="sqliteName">数据库名称</param>
+    /// <param name="sqlitePath">数据库路径</param>
     public static void CreateSQLiteConnection(string sqliteName, string sqlitePath = "")
     {
         _stringBuilder.Clear();
@@ -185,10 +191,80 @@ public class SQLiteFunction
         _stringBuilder.AppendFormat("update {0} set {1} where {2}", tableName, column, condition);
         return ExecuteNonQuery(sqliteName, _stringBuilder.ToString());
     }
+
+    /// <summary>
+    /// 查询数据库所有字段信息
+    /// </summary>
+    /// <param name="sqliteName">数据库</param>
+    /// <param name="tableName">表</param>
+    /// <returns></returns>
+    public static string SelectOperation(string sqliteName,string tableName,out object[] keyVlaue)
+    {
+        keyVlaue = null;
+        SqliteInfo sqliteInfo = GetSqliteInfo(sqliteName);
+        if (sqliteInfo == null)
+        {
+            Debug.LogError("sqlit is not exist! ");
+            return string.Empty;
+        }
+        _stringBuilder.Clear();
+        _stringBuilder.AppendFormat("pragma table_info ({0})", tableName);
+        try
+        {
+            sqliteInfo.Command.CommandText = _stringBuilder.ToString();
+
+            _stringBuilder.Clear();
+            _reader = sqliteInfo.Command.ExecuteReader();
+            List<object> key = new List<object>();
+            while (_reader.Read())
+            {
+                key.Add(_reader.GetValue(1));
+                string value = _reader.GetValue(1).ToString();
+                object type = _reader.GetValue(2).ToString();
+
+                if (_stringBuilder.Length != 0)
+                {
+                    _stringBuilder.Append("|");
+                }
+                _stringBuilder.Append(value).Append(":").Append(type);
+            }
+            _reader.Close();
+            keyVlaue = key.ToArray();
+        }
+        catch (SqliteException e)
+        {
+            Debug.LogErrorFormat("sqlite 语句执行错误 e ： {0}； commandText : {1};", e, sqliteInfo.Command.CommandText);
+        }
+        return _stringBuilder.ToString();
+    }
+
     /// <summary>
     /// 查
     /// </summary>
-    public static string SelectOperation(string sqliteName,string tableName,Dictionary<string,string> conditions= null, params string[] columns)
+    /// <param name="sqliteName">数据库名</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="conditions">条件 key = value</param>
+    /// <param name="columns">查询列</param>
+    /// <returns></returns>
+    public static string SelectOperation(string sqliteName, string tableName, Dictionary<string, string> conditions, params string[] columns)
+    {
+        List<string> cons = new List<string>();
+        foreach (var item in conditions)
+        {
+            cons.Add(item.Key + " = " + item.Value);
+        }
+        return SelectOperation(sqliteName, tableName, cons, columns);
+    }
+
+    /// <summary>
+    /// 查
+    /// </summary>
+    /// <param name="sqliteName">数据库名</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="conditions">查询的各个条件</param>
+    /// <param name="columns">查询列</param>
+    /// <returns></returns>
+    public static string SelectOperation(string sqliteName,string tableName,List<string> conditions ,params string[] columns)
     {
         SqliteInfo sqliteInfo = GetSqliteInfo(sqliteName);
 
@@ -198,18 +274,30 @@ public class SQLiteFunction
             return string.Empty;
         }
         //SELECT column1, column2, columnN FROM table_name;
-        _stringBuilder.Clear();
-
         string condition = string.Empty;
-        foreach (var item in conditions)
+        if (conditions.Count > 0)
         {
-            if (!string.IsNullOrEmpty(condition))
+            _stringBuilder.Clear();
+            for (int i = 0; i < conditions.Count; i++)
             {
-                condition += ",";
+                if (!string.IsNullOrEmpty(condition))
+                {
+                    condition += ",";
+                }
+                condition += conditions[i];
             }
-            condition += item.Key + " = " + item.Value;
         }
-        _stringBuilder.AppendFormat("SELECT {0} FROM {1} {2}", columns, tableName, conditions == null ? "" : string.Format("WHERE {0}", condition));
+
+        string column = string.Empty;
+        for (int i = 0; i < columns.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(column))
+            {
+                column += ",";
+            }
+            column += columns[i];
+        }
+        _stringBuilder.AppendFormat("SELECT {0} FROM {1} {2}", column, tableName, condition.Length == 0? "" : string.Format("WHERE {0}", condition));
         try
         {
             sqliteInfo.Command.CommandText = _stringBuilder.ToString();
@@ -233,7 +321,7 @@ public class SQLiteFunction
         }
         catch (SqliteException e)
         {
-            Debug.LogError("查询错误 e："+e.Message);
+            Debug.LogError("查询错误 e：" + e.Message + "sql commandtext :" + sqliteInfo.Command.CommandText);
         }
         return _stringBuilder.ToString();
     }

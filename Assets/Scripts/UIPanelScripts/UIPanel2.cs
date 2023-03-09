@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class UIPanel2 : UIPanel
 {
-    public override void OnAwake()
+    public override void Awake()
     {
-        base.OnAwake();
+        base.Awake();
     }
 
-    public override void OnStart()
+    public override void Start()
     {
-        base.OnStart();
+        base.Start();
     }
 
-    public override void OnEvent(EventID event_id, EventParam param)
+    public override void Event(EventID event_id, EventParam param)
     {
-        base.OnEvent(event_id, param);
+        base.Event(event_id, param);
     }
 
-    public override void OnUpdate()
+    public override void Update()
     {
-        base.OnUpdate();
+        base.Update();
     }
 
-    public override void OnClose()
+    public override void Close()
     {
-        base.OnClose();
+        base.Close();
     }
 }

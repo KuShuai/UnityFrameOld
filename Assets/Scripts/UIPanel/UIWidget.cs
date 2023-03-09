@@ -21,18 +21,13 @@ public class UIWidget : MonoBehaviour
     private List<EventID> _eventList = null;
 
     //uiFunction
-    public virtual void OnAwake() { }
-    public virtual void OnStart() { }
-    public virtual void OnUpdate() { }
-    public virtual void OnEvent(EventID event_id,EventParam param) { }
-    public virtual void OnClose() { }
+    public virtual void Event(EventID event_id,EventParam param) { }
 
     private bool _inited = false;
 
-    private void Awake()
+    public virtual void Awake()
     {
         InitWidget();
-        OnAwake();
     }
 
     void InitWidget()
@@ -54,25 +49,21 @@ public class UIWidget : MonoBehaviour
         }
     }
 
-    private void Start()
+    public virtual void Start()
     {
-        OnStart();
     }
 
-    private void Update()
-    {
-        OnUpdate();
+    public virtual void Update()
+    {;
     }
 
     void EventHandler(EventID eventId, EventParam param)
     {
-        OnEvent(eventId, param);
+        Event(eventId, param);
     }
 
-    public void Close()
+    public virtual void Close()
     {
-        OnClose();
-
         for (int i = 0; i < _eventList.Count; i++)
         {
             EventManager.Instance.UnRegisterEvent(_eventList[i], EventHandler);

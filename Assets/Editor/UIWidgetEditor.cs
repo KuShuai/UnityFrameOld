@@ -62,9 +62,9 @@ public class UIWidgetEditor : Editor
                 content.AppendLine(string.Format("private {0} {1} = null;", nameSplits[nameSplits.Length - 1], name.stringValue));
             }
             content.AppendLine();
-            content.AppendLine("    public override void OnPreLoad()");
+            content.AppendLine("    public override void Awake()");
             content.AppendLine("    {");
-            content.AppendLine("        base.OnPreLoad();");
+            content.AppendLine("        base.Awake();");
             for (int i = 0; i < so_links.arraySize; i++)
             {
                 var item = so_links.GetArrayElementAtIndex(i);

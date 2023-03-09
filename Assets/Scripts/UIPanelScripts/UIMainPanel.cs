@@ -7,9 +7,9 @@ public class UIMainPanel : UIPanel
 {
     private Image R_Image = null;
 
-    public override void OnAwake()
+    public override void Awake()
     {
-        base.OnAwake();
+        base.Awake();
         R_Image = GetUIWidget<Image>("R_Image");
 
     }
