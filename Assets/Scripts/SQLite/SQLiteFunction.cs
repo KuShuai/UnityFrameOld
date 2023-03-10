@@ -143,19 +143,43 @@ public class SQLiteFunction
     /// <param name="key">key值</param>
     /// <param name="value">value</param>
     /// <returns></returns>
-    public static bool DeleteOperation(string sqliteName,string tableName, Dictionary<string, string> conditions)
+    /// 
+
+
+    /// <summary>
+    /// 删
+    /// </summary>
+    /// <param name="sqliteName">数据库名</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="conditions">where 条件</param>
+    /// <returns></returns>
+    public static bool DeleteOperation(string sqliteName, string tableName, List<string> conditions)
     {
-        _stringBuilder.Clear();
         string condition = string.Empty;
-        foreach (var item in conditions)
+        for (int i = 0; i < conditions.Count; i++)
         {
             if (!string.IsNullOrEmpty(condition))
             {
                 condition += ",";
             }
-            condition += item.Key + "=" + item.Value;
+            condition += conditions[i];
         }
-        _stringBuilder.AppendFormat("delete form {0} where {1}", tableName, condition);
+
+        return DeleteOperation(sqliteName, tableName, condition);
+    }
+
+    /// <summary>
+    /// 删
+    /// </summary>
+    /// <param name="sqliteName">数据库名</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="conditions">where 条件</param>
+    /// <returns></returns>
+    public static bool DeleteOperation(string sqliteName, string tableName, string condition)
+    {
+        _stringBuilder.Clear();
+
+        _stringBuilder.AppendFormat("delete from {0} {1}", tableName, string.IsNullOrEmpty(condition) ? "" : string.Format("where {0}", condition));
 
         return ExecuteNonQuery(sqliteName, _stringBuilder.ToString());
     }
@@ -167,9 +191,8 @@ public class SQLiteFunction
     /// <param name="columns">修改内容</param>
     /// <param name="condition">修改条件</param>
     /// <returns></returns>
-    public static bool UpdateOperation(string sqliteName,string tableName, Dictionary<string, string> columns, Dictionary<string, string> conditions)
+    public static bool UpdateOperation(string sqliteName, string tableName, Dictionary<string, string> columns, Dictionary<string, string> conditions)
     {
-        _stringBuilder.Clear();
         string column = "";
         foreach (var item in columns)
         {
@@ -188,6 +211,19 @@ public class SQLiteFunction
             }
             condition += item.Key + " = " + item.Value;
         }
+        return UpdateOperation(sqliteName, tableName, column, condition);
+    }
+
+    /// <summary>
+    /// 改
+    /// </summary>
+    /// <param name="tableName">表名</param>
+    /// <param name="columns">修改内容</param>
+    /// <param name="condition">修改条件</param>
+    /// <returns></returns>
+    public static bool UpdateOperation(string sqliteName, string tableName, string column, string condition)
+    {
+        _stringBuilder.Clear();
         _stringBuilder.AppendFormat("update {0} set {1} where {2}", tableName, column, condition);
         return ExecuteNonQuery(sqliteName, _stringBuilder.ToString());
     }
@@ -266,13 +302,6 @@ public class SQLiteFunction
     /// <returns></returns>
     public static string SelectOperation(string sqliteName,string tableName,List<string> conditions ,params string[] columns)
     {
-        SqliteInfo sqliteInfo = GetSqliteInfo(sqliteName);
-
-        if (sqliteInfo == null)
-        {
-            Debug.LogError("sqlit is not exist! ");
-            return string.Empty;
-        }
         //SELECT column1, column2, columnN FROM table_name;
         string condition = string.Empty;
         if (conditions.Count > 0)
@@ -297,7 +326,29 @@ public class SQLiteFunction
             }
             column += columns[i];
         }
-        _stringBuilder.AppendFormat("SELECT {0} FROM {1} {2}", column, tableName, condition.Length == 0? "" : string.Format("WHERE {0}", condition));
+
+        return SelectOperation(sqliteName, tableName,  column, condition);
+    }
+
+    /// <summary>
+    /// 查
+    /// </summary>
+    /// <param name="sqliteName">数据库名</param>
+    /// <param name="tableName">表名</param>
+    /// <param name="conditions">条件 key = value</param>
+    /// <param name="columns">查询列</param>
+    /// <returns></returns>
+    public static string SelectOperation(string sqliteName, string tableName, string column, string condition)
+    {
+        SqliteInfo sqliteInfo = GetSqliteInfo(sqliteName);
+
+        if (sqliteInfo == null)
+        {
+            Debug.LogError("sqlit is not exist! ");
+            return string.Empty;
+        }
+        _stringBuilder.Clear();
+        _stringBuilder.AppendFormat("SELECT {0} FROM {1} {2}", column, tableName, condition.Length == 0 ? "" : string.Format("WHERE {0}", condition));
         try
         {
             sqliteInfo.Command.CommandText = _stringBuilder.ToString();
@@ -314,7 +365,7 @@ public class SQLiteFunction
                     {
                         _stringBuilder.Append("|");
                     }
-                    _stringBuilder.Append(key).Append(":").Append(value);
+                    _stringBuilder.Append(key).Append(":").Append(value.ToString());
                 }
             }
             _reader.Close();
@@ -351,6 +402,7 @@ public class SQLiteFunction
             Debug.LogErrorFormat("数据库操作错误 {0}", e.Message);
             return false;
         }
+        Debug.LogFormat("执行成功{0}", sqliteInfo.Command.CommandText);
         return true;
     }
 
