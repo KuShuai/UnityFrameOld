@@ -22,7 +22,7 @@
     >UI的基类，主要功能为：
     >在Editor模式下通过特殊标记（R_*）标记所需要控制管理的UI节点，添加到Links List中，在Awark时，通过遍历将所有所需节点通过其HashCode进行统一管理，方便UI界面对所有节点的查找。
     >添加OnEvent虚方法，让每一个派生类界面重写去实现
-  * UIWidgetEditor
+  * UIWidgetEditor.cs
     >方便代码编写生成解决很多重复性代码编写
 ### [`数据库模块`](https://github.com/KuShuai/Frame/tree/main/Assets/Scripts/SQLite "点击跳转到文件夹")
   * SQLiteFunction.cs
