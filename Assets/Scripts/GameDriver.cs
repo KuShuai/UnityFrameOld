@@ -29,16 +29,16 @@ public class GameDriver : MonoBehaviour
     {
         if (!CriDevelopMode)
         {
-            AppChannelHelper.LoadAppChannel();
+            //AppChannelHelper.LoadAppChannel();
 
-            VersionManager.Instance.SingletonInit();
+            //VersionManager.Instance.SingletonInit();
     
         }
         yield return 0;
 
         Debug.LogError("******检查版本");
         //检查版本
-        VersionManager.Instance.CheckingVersion();
+        //VersionManager.Instance.CheckingVersion();
 
 
         ResourceManager.CreateInstance();

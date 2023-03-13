@@ -56,13 +56,14 @@ public class MyAssetBundle : Editor
                 {
                     continue;
                 }
-                string assetName = GetAddressableName(files[n]);
-                //Deug.Log("assetNames add:" + files[n]);
-                //Debug.Log("addressableNames add:" + assetName);
+                string addressableName = GetAddressableName(files[n]);
+
                 assetNames.Add(files[n]);
-                addressableNames.Add(assetName);
-                Debug.LogFormat(">>>>>{0}:{1}", assetName, build.assetBundleName);
-                IndexFileContent.AppendFormat("{0}:{1}", assetName, build.assetBundleName);
+                Debug.LogError("assetNames:" + files[n]);
+                addressableNames.Add(addressableName);
+                Debug.LogError("addressableName:" + addressableName);
+                
+                IndexFileContent.AppendFormat("{0}:{1}", addressableName, build.assetBundleName);
                 IndexFileContent.AppendLine();
             }
 
@@ -91,7 +92,7 @@ public class MyAssetBundle : Editor
     private static string GetAddressableName(string file_path)
     {
         string addressable_name = file_path;
-        addressable_name = addressable_name.Replace("Assets/PrefabResources\\", "");
+        addressable_name = addressable_name.Replace("Assets/PrefabResources\\", "").Replace('\\', '/');
         int dot_pos = addressable_name.LastIndexOf('.');
         if (dot_pos != -1)
         {
