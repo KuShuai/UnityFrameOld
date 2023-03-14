@@ -63,4 +63,10 @@ public class ResourceManager :MonoBehaviour
 
 
     public virtual void Unload(string asset_path) { }
+
+    public virtual bool LoadLuaScript(string asset_name,out byte[] content)
+    {
+        content = null;
+        return false;
+    }
 }

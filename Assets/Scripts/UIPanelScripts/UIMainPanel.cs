@@ -7,11 +7,11 @@ public class UIMainPanel : UIPanel
 {
     private Image R_Image = null;
 
-    public override void Awake()
-    {
-        base.Awake();
-        R_Image = GetUIWidget<Image>("R_Image");
 
+    public override void OnPreLoad()
+    {
+        base.OnPreLoad();
+        R_Image = GetUIWidget<Image>("R_Image");
     }
 
 

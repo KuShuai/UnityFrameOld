@@ -36,9 +36,10 @@ public class UIPanel4 : UIPanel
     private Button R_Select_Button = null;
     private Text R_SelectResult_Text = null;
 
-    public override void Awake()
+    public override void OnPreLoad()
     {
-        base.Awake();
+        base.OnPreLoad();
+
         R_Create_RectTransform = GetUIWidget<RectTransform>("R_Create_RectTransform");
         R_CreateSqliteName_InputField = GetUIWidget<InputField>("R_CreateSqliteName_InputField");
         R_CreateTableName_InputField = GetUIWidget<InputField>("R_CreateTableName_InputField");
@@ -81,9 +82,10 @@ public class UIPanel4 : UIPanel
     /// </summary>
     private object[] keyValue;
 
-    public override void Start()
+    public override void OnLoad()
     {
-        base.Start();
+        base.OnLoad();
+
         R_CreateAdd_Button.onClick.AddListener(()=> {
             RectTransform rect = GameObject.Instantiate(R_CreateItem_RectTransform, R_Create_RectTransform);
             rect.SetSiblingIndex(R_Create_RectTransform.childCount - 2);
@@ -179,18 +181,4 @@ public class UIPanel4 : UIPanel
         });
     }
 
-    public override void Event(EventID event_id, EventParam param)
-    {
-        base.Event(event_id, param);
-    }
-
-    public override void Update()
-    {
-        base.Update();
-    }
-
-    public override void Close()
-    {
-        base.Close();
-    }
 }

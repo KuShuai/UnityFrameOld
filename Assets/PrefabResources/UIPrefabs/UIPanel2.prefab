@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3457764689323899674}
   - component: {fileID: 3457764689323899749}
   - component: {fileID: 3457764689323899748}
-  - component: {fileID: 1066977460219916449}
+  - component: {fileID: 8072366056556897776}
   m_Layer: 5
   m_Name: UIPanel2
   m_TagString: Untagged
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1066977460219916449
+--- !u!114 &8072366056556897776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,9 +110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3457764689323899750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f774cbfd3c077544b3181687c97ac27, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b2d29baa5d74da43b7167c806acbded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LuaFile: 
   Links: []
 --- !u!1 &3457764689598737256
 GameObject:

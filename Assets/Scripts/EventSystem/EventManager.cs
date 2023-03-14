@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void EventCallBack(EventID event_id, EventParam param = null);
-public delegate bool EventCallBackOnce(EventID event_id, EventParam param = null);
+public delegate void EventCallBack(int event_id, EventParam param = null);
+public delegate bool EventCallBackOnce(int event_id, EventParam param = null);
 
 public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
 {
-    class EventItem {
+    class EventItem
+    {
         public EventID eventId;
         public EventParam eventParam;
 
-        public EventItem(EventID _eventID,EventParam _eventParam)
+        public EventItem(EventID _eventID, EventParam _eventParam)
         {
             eventId = _eventID;
             eventParam = _eventParam;
@@ -20,7 +21,7 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
 
     List<EventItem> _cachedEvent;
 
-    Dictionary<EventID, EventCallBack> _eventCallback;
+    Dictionary<int, EventCallBack> _eventCallback;
 
     public class EventItemOnce
     {
@@ -34,7 +35,7 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
         }
     }
 
-    Dictionary<EventID, List<EventItemOnce>> _eventCallbackOnce_execute;
+    Dictionary<int, List<EventItemOnce>> _eventCallbackOnce_execute;
 
     public void Reset()
     {
@@ -45,8 +46,8 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
 
     public void SingletonInit()
     {
-        _eventCallback = new Dictionary<EventID, EventCallBack>();
-        _eventCallbackOnce_execute = new Dictionary<EventID, List<EventItemOnce>>();
+        _eventCallback = new Dictionary<int, EventCallBack>();
+        _eventCallbackOnce_execute = new Dictionary<int, List<EventItemOnce>>();
 
         _cachedEvent = new List<EventItem>();
     }
@@ -60,7 +61,11 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
         _cachedEvent.Clear();
     }
 
-    public void RegisterEvent(EventID eventID,EventCallBack processer)
+    public void RegisterEvent(EventID eventID, EventCallBack processer)
+    {
+        RegisterEvent_LUA((int)eventID, processer);
+    }
+    public void RegisterEvent_LUA(int eventID, EventCallBack processer)
     {
         if (_eventCallback.ContainsKey(eventID))
         {
@@ -73,7 +78,11 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
         }
     }
 
-    public void UnRegisterEvent(EventID eventID,EventCallBack processer)
+    public void UnRegisterEvent(EventID eventID, EventCallBack processer)
+    {
+        UnRegisterEvent_LUA((int)eventID, processer);
+    }
+    public void UnRegisterEvent_LUA(int eventID, EventCallBack processer)
     {
         if (_eventCallback.ContainsKey(eventID))
         {
@@ -87,8 +96,12 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
 
     public EventItemOnce RegisterEventOnce(EventID eventId, EventCallBackOnce callBackParam)
     {
+        return RegisterEventOnceLUA((int)eventId, callBackParam);
+    }
+    public EventItemOnce RegisterEventOnceLUA(int eventId, EventCallBackOnce callBackParam)
+    {
         List<EventItemOnce> callBackOncesList = null;
-        if (!_eventCallbackOnce_execute.TryGetValue(eventId,out callBackOncesList))
+        if (!_eventCallbackOnce_execute.TryGetValue(eventId, out callBackOncesList))
         {
             callBackOncesList = new List<EventItemOnce>();
             _eventCallbackOnce_execute.Add(eventId, callBackOncesList);
@@ -101,8 +114,12 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
 
     public void UnregisterEventOnce(EventID eventId, EventCallBackOnce processer)
     {
+        UnregisterEventOnceLUA((int)eventId, processer);
+    }
+    public void UnregisterEventOnceLUA(int eventId, EventCallBackOnce processer)
+    {
         List<EventItemOnce> callBackOncesList;
-        if (_eventCallbackOnce_execute.TryGetValue(eventId,out callBackOncesList))
+        if (_eventCallbackOnce_execute.TryGetValue(eventId, out callBackOncesList))
         {
             for (int i = 0; i < callBackOncesList.Count; i++)
             {
@@ -127,7 +144,11 @@ public class EventManager : MonoSingleton<EventManager>, IMonoSingleton
         Notify(eventID, param);
     }
 
-    private void Notify(EventID eventId,EventParam param)
+    private void Notify(EventID eventId, EventParam param)
+    {
+        NotifyLua((int)eventId, param);
+    }
+    private void NotifyLua(int eventId, EventParam param)
     {
         try
         {

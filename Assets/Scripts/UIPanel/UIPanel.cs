@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIPanel : UIWidget
 {
+    public int ID;
     public UIConfig _uiConfig;
 
     private Canvas Renderer;
@@ -30,9 +31,13 @@ public class UIPanel : UIWidget
         Renderer.sortingOrder = order;
     }
 
-    public void SetUp(UIConfig uiConfig)
+    public void SetUp(int id ,UIConfig uiConfig,object load_paramter)
     {
+        ID = id;
         _uiConfig = uiConfig;
+
+        loadParamter = load_paramter;
+
     }
 
 }

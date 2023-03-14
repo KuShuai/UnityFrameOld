@@ -13,15 +13,15 @@ public class MainStart : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UIManager.OpenUI<UIPanel1>(UIPanelEnum.UIPanel1);
+            UIManager.OpenUIPanel(UIPanelEnum.UIPanel1);
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            UIManager.OpenUI<UIPanel2>(UIPanelEnum.UIPanel2);
+            UIManager.OpenUIPanel(UIPanelEnum.UIPanel2);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            UIManager.OpenUI<UIPanel3>(UIPanelEnum.UIPanel3);
+            UIManager.OpenUIPanel(UIPanelEnum.UIPanel3);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -36,9 +36,9 @@ public class MainStart : MonoBehaviour
             UIManager.CloseUI(UIPanelEnum.UIPanel4);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ReadStreamingAssetsExcelManager.Instance.CreateAllData();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    ReadStreamingAssetsExcelManager.Instance.CreateAllData();
+        //}
     }
 }
