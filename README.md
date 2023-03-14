@@ -72,7 +72,6 @@
   >进入热更新监测模块
   >判断PersistentDataPath是否存在
   >>不存在、则创建该目录
-  
   >>并初始化创建AssetsList.txt文件夹
   >从StreamingAssets目录按需复制文件到PersistentDataPath目录
   >>并修改AssetsLists.txt
