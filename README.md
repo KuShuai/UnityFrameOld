@@ -68,6 +68,30 @@
 * 资源服务器
   >IP地址
 * 监测和下载AB包的执行流程
+  >项目启动
+  >进入热更新监测模块
+  >>判断PersistentDataPath是否存在
+  >>>不存在、则创建该目录
+  >>>并初始化创建AssetsList.txt文件夹
+  >>从StreamingAssets目录按需复制文件到PersistentDataPath目录
+  >>>并修改AssetsLists.txt
+  >>进行下载监测CheckResource
+  >>>从资源服务器下载AssetsList.txt
+  >>>从本地PersistentDataPath读取本地的AssetsList.txt
+  >>>比较俩个txt中的版本号
+  >>>>server>local
+  >>>>>开始下载准备
+  >>>>>逐一监测服务器的AB包
+  >>>>>本地list不包含ab包信息、加入下载列表
+  >>>>>本地存在MD5值不相同、加入下载列表
+  >>>>>得知总下载大小和单个文件的下载大小
+  >>>>开启协成下载Assets
+  >>>>每个资源在服务器的下载地址IP+ab.name+ab.md5
+  >>>>通过www下载
+  >>>>通过File.WriteAllByte写入到PersistentDataPath目录下
+  >>>>>已经达到了把服务器的AB包写入到了本地
+  >>>>更新本地的AssetsList.txt
+  >>>>否则不需要更新
 
 
 # 文件夹介绍
