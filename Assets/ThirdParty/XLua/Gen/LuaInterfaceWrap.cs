@@ -15,12 +15,12 @@ using System.Collections.Generic;
 namespace XLua.CSObjectWrap
 {
     using Utils = XLua.Utils;
-    public class LuaInterface_UIWrap 
+    public class LuaInterfaceWrap 
     {
         public static void __Register(RealStatePtr L)
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			System.Type type = typeof(LuaInterface_UI);
+			System.Type type = typeof(LuaInterface);
 			Utils.BeginObjectRegister(type, L, translator, 0, 0, 0, 0);
 			
 			
@@ -31,9 +31,8 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 3, 0, 0);
-			Utils.RegisterFunc(L, Utils.CLS_IDX, "OpenPanel", _m_OpenPanel_xlua_st_);
-            Utils.RegisterFunc(L, Utils.CLS_IDX, "ClosePanel", _m_ClosePanel_xlua_st_);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 2, 0, 0);
+			Utils.RegisterFunc(L, Utils.CLS_IDX, "DebugLog", _m_DebugLog_xlua_st_);
             
 			
             
@@ -52,7 +51,7 @@ namespace XLua.CSObjectWrap
 				if(LuaAPI.lua_gettop(L) == 1)
 				{
 					
-					LuaInterface_UI gen_ret = new LuaInterface_UI();
+					LuaInterface gen_ret = new LuaInterface();
 					translator.Push(L, gen_ret);
                     
 					return 1;
@@ -62,7 +61,7 @@ namespace XLua.CSObjectWrap
 			catch(System.Exception gen_e) {
 				return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
 			}
-            return LuaAPI.luaL_error(L, "invalid arguments to LuaInterface_UI constructor!");
+            return LuaAPI.luaL_error(L, "invalid arguments to LuaInterface constructor!");
             
         }
         
@@ -74,7 +73,7 @@ namespace XLua.CSObjectWrap
         
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_OpenPanel_xlua_st_(RealStatePtr L)
+        static int _m_DebugLog_xlua_st_(RealStatePtr L)
         {
 		    try {
             
@@ -84,35 +83,10 @@ namespace XLua.CSObjectWrap
             
                 
                 {
-                    int _panel_name = LuaAPI.xlua_tointeger(L, 1);
+                    string _param = LuaAPI.lua_tostring(L, 1);
+                    object[] _others = translator.GetParams<object>(L, 2);
                     
-                        UIPanel gen_ret = LuaInterface_UI.OpenPanel( _panel_name );
-                    
-					translator.Push(L, gen_ret);
-                    
-                    
-                    
-                    return 1;
-                }
-                
-            } catch(System.Exception gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
-            }
-            
-        }
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_ClosePanel_xlua_st_(RealStatePtr L)
-        {
-		    try {
-            
-            
-            
-                
-                {
-                    int _panel_name = LuaAPI.xlua_tointeger(L, 1);
-                    
-                    LuaInterface_UI.ClosePanel( _panel_name );
+                    LuaInterface.DebugLog( _param, _others );
                     
                     
                     

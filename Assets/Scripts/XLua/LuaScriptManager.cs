@@ -2,39 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
-[LuaCallCSharp]
-public enum EComponent
-{
-    Image = 0,
-    Canvas,
-    RawImage,
-    Text,
-    Button,
-    Slider,
-    Toggle,
-    ToggleGroup,
-    ScrollRect,
-    RectTransform,
-    Transform,
-    CanvasGroup,
-    Animator,
-    InputField,
-    GridLayoutGroup,
-    PlayableDirector,
-    EventTrigger,
-    SpriteRenderer,
-    TextMesh,
-    ContentSizeFitter,
-    CanvasScaler,
-    CinemachineBrain,
-
-    //PaintingCharaSpinWithMouse,
-    //PaintingUIScrollView,
-    //PaintingUILoopScrollView
-
-}
-
-public partial class LuaScriptManager :Singleton<LuaScriptManager> ,ISingleton
+public class LuaScriptManager :Singleton<LuaScriptManager> ,ISingleton
 {
     private LuaEnv _lua = null;
 
@@ -42,19 +10,21 @@ public partial class LuaScriptManager :Singleton<LuaScriptManager> ,ISingleton
 
     public void SingletonInit()
     {
+    }
+
+    public void Init()
+    {
         _lua = new LuaEnv();
         _lua.AddLoader(LuaLoader);
 
+        byte[] lua_code;
+        ResourceManager.Instance.LoadLuaScript("Main", out lua_code);
+        DoString_WithException(lua_code, "Main", _lua.Global);
 
         _lua.Global.Get("GetUIConfig", out get_uiconfig);
     }
     public void SingletonDestory()
     {
-    }
-
-    private LuaScriptManager()
-    {
-
     }
 
     public LuaTable LoadScript(string script_path)

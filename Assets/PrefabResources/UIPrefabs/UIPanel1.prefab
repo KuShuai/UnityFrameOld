@@ -300,5 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2d29baa5d74da43b7167c806acbded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LuaFile: 
+  LuaFile: UIPanel1
   Links: []
+  ID: 0

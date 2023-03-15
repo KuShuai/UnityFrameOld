@@ -1,4 +1,8 @@
 Configs/TestConfig:Configs/Configs.assetbundle
+LuaScripts/Class.lua:LuaScripts/LuaScripts.assetbundle
+LuaScripts/Config.lua:LuaScripts/LuaScripts.assetbundle
+LuaScripts/Main.lua:LuaScripts/LuaScripts.assetbundle
+LuaScripts/PanelID.lua:LuaScripts/LuaScripts.assetbundle
 Other/PlayerControllerFPS:Other/Other.assetbundle
 UIPrefabs/UIPanel1:UIPrefabs/UIPrefabs.assetbundle
 UIPrefabs/UIPanel2:UIPrefabs/UIPrefabs.assetbundle

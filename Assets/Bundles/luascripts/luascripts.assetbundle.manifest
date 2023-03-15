@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 949025609
+CRC: 2751427830
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 510fad1da797292c32b49f4ba5185c2f
+    Hash: 42df8af714c626df41bd4db373342182
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ad585dd02dfb5016c0dad519eab8f49
@@ -13,5 +13,8 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/PrefabResources/index.txt
+- Assets/PrefabResources/LuaScripts/PanelID.lua.txt
+- Assets/PrefabResources/LuaScripts/Config.lua.txt
+- Assets/PrefabResources/LuaScripts/Main.lua.txt
+- Assets/PrefabResources/LuaScripts/Class.lua.txt
 Dependencies: []

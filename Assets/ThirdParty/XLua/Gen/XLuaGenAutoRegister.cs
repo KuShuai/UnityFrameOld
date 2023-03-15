@@ -22,7 +22,7 @@ namespace XLua.CSObjectWrap
         static void wrapInit0(LuaEnv luaenv, ObjectTranslator translator)
         {
         
-            translator.DelayWrapLoader(typeof(LuaInterface_UI), LuaInterface_UIWrap.__Register);
+            translator.DelayWrapLoader(typeof(UIConfig), UIConfigWrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(UILayer), UILayerWrap.__Register);
@@ -32,6 +32,12 @@ namespace XLua.CSObjectWrap
         
         
             translator.DelayWrapLoader(typeof(EComponent), EComponentWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(LuaInterface), LuaInterfaceWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(LuaInterface_UI), LuaInterface_UIWrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(object), SystemObjectWrap.__Register);
@@ -168,16 +174,16 @@ namespace XLua.CSObjectWrap
         
             translator.DelayWrapLoader(typeof(UnityEngine.SceneManagement.Scene), UnityEngineSceneManagementSceneWrap.__Register);
         
+        }
+        
+        static void wrapInit1(LuaEnv luaenv, ObjectTranslator translator)
+        {
         
             translator.DelayWrapLoader(typeof(System.Collections.Generic.List<int>), SystemCollectionsGenericList_1_SystemInt32_Wrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(System.Collections.Generic.List<UnityEngine.Vector2>), SystemCollectionsGenericList_1_UnityEngineVector2_Wrap.__Register);
         
-        }
-        
-        static void wrapInit1(LuaEnv luaenv, ObjectTranslator translator)
-        {
         
             translator.DelayWrapLoader(typeof(System.Collections.Generic.List<XLua.LuaTable>), SystemCollectionsGenericList_1_XLuaLuaTable_Wrap.__Register);
         
@@ -325,16 +331,16 @@ namespace XLua.CSObjectWrap
         
             translator.DelayWrapLoader(typeof(UnityEngine.Events.UnityEvent<bool>), UnityEngineEventsUnityEvent_1_SystemBoolean_Wrap.__Register);
         
+        }
+        
+        static void wrapInit2(LuaEnv luaenv, ObjectTranslator translator)
+        {
         
             translator.DelayWrapLoader(typeof(UnityEngine.Events.UnityEvent<float>), UnityEngineEventsUnityEvent_1_SystemSingle_Wrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(UnityEngine.Events.UnityEvent<string>), UnityEngineEventsUnityEvent_1_SystemString_Wrap.__Register);
         
-        }
-        
-        static void wrapInit2(LuaEnv luaenv, ObjectTranslator translator)
-        {
         
             translator.DelayWrapLoader(typeof(UnityEngine.Events.UnityEvent<int>), UnityEngineEventsUnityEvent_1_SystemInt32_Wrap.__Register);
         

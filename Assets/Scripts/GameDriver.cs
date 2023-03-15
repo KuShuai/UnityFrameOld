@@ -40,9 +40,10 @@ public class GameDriver : MonoBehaviour
         //¼ì²é°æ±¾
         //VersionManager.Instance.CheckingVersion();
 
-
         ResourceManager.CreateInstance();
         ResourceManager.Instance.Init();
+
+        LuaScriptManager.Instance.Init();
 
         EnterGame();
 

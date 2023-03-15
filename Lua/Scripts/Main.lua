@@ -1,0 +1,16 @@
+require 'Class'
+UIPanelEnum = require('PanelID')
+
+require 'UI.UIConfig'
+
+
+function Debug(fmt,...)
+	if type(fmt)=="string" then
+		local msg = 'LUA-'..string.format(fmt,...)
+		CS.LuaInterface.DebugLog(msg)
+	else
+		print(fmt,...)
+	end
+end
+
+Debug("AAAAA1111")

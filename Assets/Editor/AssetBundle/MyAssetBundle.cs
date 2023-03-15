@@ -17,7 +17,10 @@ public class MyAssetBundle : Editor
         {
             Directory.Delete(BundleExportPath, true);
         }
+        AssetDatabase.Refresh();
     }
+
+
     [MenuItem("Bundle/My/Build")]
     static void MyABundleUI(){
 
@@ -25,12 +28,19 @@ public class MyAssetBundle : Editor
 
         string BundleExportPath = Application.dataPath + "/Bundles";
         string BundlePath = "Assets/PrefabResources";
+        
+        string LuaSrcPath = string.Format("{0}/../Lua/Scripts/", Application.dataPath);
+        string LuaPrefabPath = string.Format("{0}/PrefabResources/LuaScripts/", Application.dataPath);
 
         if (Directory.Exists(BundleExportPath))
         {
             Directory.Delete(BundleExportPath, true);
         }
         Directory.CreateDirectory(BundleExportPath);
+
+
+        // lua
+        CopyLuaDirectory(LuaSrcPath, LuaPrefabPath);
 
         List<AssetBundleBuild> builds = new List<AssetBundleBuild>();
 
@@ -100,5 +110,48 @@ public class MyAssetBundle : Editor
             addressable_name = addressable_name.Remove(dot_pos, count);
         }
         return addressable_name;
+    }
+
+    private static bool CopyLuaDirectory(string SourcePath,string DestinationPath)
+    {
+        bool ret = false;
+
+        try
+        {
+            SourcePath = SourcePath.EndsWith(@"/", System.StringComparison.CurrentCulture) ? SourcePath : SourcePath + @"/";
+            DestinationPath = DestinationPath.EndsWith(@"/", System.StringComparison.CurrentCulture) ? DestinationPath : DestinationPath + @"/";
+
+            if (Directory.Exists(SourcePath))
+            {
+                if (Directory.Exists(DestinationPath) == true)
+                {
+                    Directory.Delete(DestinationPath, true);
+                }
+                Directory.CreateDirectory(DestinationPath);
+
+                foreach (var item in Directory.GetFiles(SourcePath))
+                {
+                    FileInfo fileInfo = new FileInfo(item);
+                    string file_name = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                    fileInfo.CopyTo(DestinationPath + file_name + ".lua.txt");
+                }
+                foreach (string item in Directory.GetDirectories(SourcePath))
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(item);
+                    if (CopyLuaDirectory(item, DestinationPath + dirInfo.Name) == false)
+                    {
+                        ret = false;
+                    }
+                }
+                ret = true;
+            }
+        }
+        catch (System.Exception ex)
+        {
+            ret = false;
+        }
+
+        AssetDatabase.Refresh();
+        return ret;
     }
 }

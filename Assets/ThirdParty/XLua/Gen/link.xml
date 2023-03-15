@@ -3,10 +3,12 @@
 <linker>
 
 	<assembly fullname="Assembly-CSharp">
-	    <type fullname="LuaInterface_UI" preserve="all"/>
+	    <type fullname="UIConfig" preserve="all"/>
 		<type fullname="UILayer" preserve="all"/>
 		<type fullname="UIWidget" preserve="all"/>
 		<type fullname="EComponent" preserve="all"/>
+		<type fullname="LuaInterface" preserve="all"/>
+		<type fullname="LuaInterface_UI" preserve="all"/>
 		<type fullname="XLua.Cast.IEnumerator" preserve="all"/>
 		<type fullname="UpdateErrorCode" preserve="all"/>
 		

@@ -1,16 +1,19 @@
 ManifestFileVersion: 0
-CRC: 3098541391
+CRC: 1734926188
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: configs/configs.assetbundle
       Dependencies: {}
     Info_1:
-      Name: other/other.assetbundle
+      Name: luascripts/luascripts.assetbundle
       Dependencies: {}
     Info_2:
-      Name: uiprefabs/uiprefabs.assetbundle
+      Name: other/other.assetbundle
       Dependencies: {}
     Info_3:
+      Name: uiprefabs/uiprefabs.assetbundle
+      Dependencies: {}
+    Info_4:
       Name: index
       Dependencies: {}

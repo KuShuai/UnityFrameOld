@@ -10,6 +10,7 @@ public class RSPathUtil
     public const string Ext = "";
     public static string UIPath = "UIPrefabs/";
     public static string ConfigsPath = "Configs/";
+    public static string LuaScriptsBundlePath = "LuaScripts/";
 
     public static string Config(string name)
     {
@@ -21,6 +22,11 @@ public class RSPathUtil
     {
         Builder.Clear();
         return Builder.Append(PathUtil.AssetPath(UIPath)).Append(name).Append(Ext).ToString();
+    }
+    public static string LuaScript(string name)
+    {
+        Builder.Clear();
+        return Builder.Append(PathUtil.AssetPath(LuaScriptsBundlePath)).Append(name).Append(".lua").ToString();
     }
 
 }

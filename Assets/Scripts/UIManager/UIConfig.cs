@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[XLua.LuaCallCSharp]
 public class UIConfig
 {
     public UIPanelEnum _enum;
     public string name;
     public UILayer layer;
     public bool fullscreen;
-
-    public UIConfig(UIPanelEnum panelEnum, string name = UIPanelConst.Empty, UILayer layer =UILayer.Normal,bool fullscreen = true)
-    {
-        _enum = panelEnum;
-        this.name = name;
-        this.layer = layer;
-        this.fullscreen = fullscreen;
-    }
 }
 
 public class UIConfigSingleton : Singleton<UIConfigSingleton>, ISingleton
@@ -33,15 +26,28 @@ public class UIConfigSingleton : Singleton<UIConfigSingleton>, ISingleton
         AddUIConfig(UIPanelEnum.UIPanel4, UIPanelConst.UIPanel4);
     }
 
+    public void Init()
+    {
+
+    }
+
     private void AddUIConfig(UIPanelEnum _enum,string _UIPanel = UIPanelConst.Empty, UILayer layer = UILayer.Normal,  bool fullscreen = true)
     {
-        _allUIConfig.Add(_enum, new UIConfig(_enum, _UIPanel, layer, fullscreen));
+        _allUIConfig.Add(_enum, new UIConfig()
+        {
+
+            _enum = _enum,
+            name = _UIPanel,
+            layer = layer,
+            fullscreen = fullscreen
+        });
         _allUIName.Add(_UIPanel, _enum);
     }
 
     public UIConfig GetUIConfig(int ui)
     {
-        return GetUIConfig((UIPanelEnum)ui);
+        UIConfig rt = GetUIConfig((UIPanelEnum)ui);
+        return rt;
     }
 
     public UIConfig GetUIConfig(UIPanelEnum ui)
