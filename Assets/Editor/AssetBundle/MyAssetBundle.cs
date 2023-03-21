@@ -20,9 +20,127 @@ public class MyAssetBundle : Editor
         AssetDatabase.Refresh();
     }
 
+    [MenuItem("Bundle/My/Deleindex")]
+    static void ClearIndexInfo()
+    {
+        string[] files = Directory.GetFiles(Application.dataPath + "/Bundles" , "index*");
+        for (int i = 0; i < files.Length; i++)
+        {
+            File.Delete(files[i]);
+        }
+        AssetDatabase.Refresh();
+    }
+
+    [MenuItem("Bundle/My/BuildLua")]
+    static void MyABundleLua()
+    {
+        Dictionary<string, string> indexInfo = new Dictionary<string, string>();
+        string BundleExportPath = Application.dataPath + "/Bundles";
+        string BundlePath = "Assets/PrefabResources/LuaScripts";
+
+        string luaSrcPath = string.Format("{0}/../Lua/Scripts/", Application.dataPath);
+        string luaPrefabPath = string.Format("{0}/PrefabResources/LuaScripts/", Application.dataPath);
+
+
+        if (Directory.Exists(BundleExportPath+"/luascripts"))
+        {
+            Directory.Delete(BundleExportPath + "/luascripts", true);
+        }
+        AssetDatabase.Refresh();
+        ClearIndexInfo();
+
+        CopyLuaDirectory(luaSrcPath, luaPrefabPath);
+        List<AssetBundleBuild> builds = new List<AssetBundleBuild>();
+
+        string[] dirss = Directory.GetDirectories(BundlePath, "*", SearchOption.AllDirectories);
+        List<string> dirs = new List<string>();
+        for (int i = 0; i < dirss.Length; i++)
+        {
+            dirs.Add(dirss[i]);
+        }
+        dirs.Add(BundlePath);
+        for (int i = 0; i < dirs.Count; i++)
+        {
+            string[] files = Directory.GetFiles(dirs[i], "*");
+            if (files.Length == 0)
+                continue;
+
+            AssetBundleBuild build = new AssetBundleBuild();
+            string[] filesInfo = dirs[i].Split('\\');
+            //build.assetBundleName = filesInfo[filesInfo.Length - 1] + "/" + filesInfo[filesInfo.Length - 1] + ".assetbundle";
+            build.assetBundleName = "LuaScripts/LuaScripts.assetbundle";
+            List<string> assetNames = new List<string>();
+            List<string> addressableNames = new List<string>();
+            for (int n = 0; n < files.Length; n++)
+            {
+                if (Path.GetExtension(files[n]).EndsWith(".meta"))
+                {
+                    continue;
+                }
+                Debug.LogFormat(files[n]);
+                string addressableName = GetAddressableName(files[n]);
+                assetNames.Add(files[n]);
+                addressableNames.Add(addressableName);
+                indexInfo.Add(addressableName, build.assetBundleName);
+            }
+            build.assetNames = assetNames.ToArray();
+            build.addressableNames = addressableNames.ToArray();
+
+            builds.Add(build);
+        }
+        Debug.LogError(builds.Count);
+
+        //Reset Index Text
+        {
+            Dictionary<string, string> buildInfo = new Dictionary<string, string>();
+            string index_file_path = string.Format("{0}{1}.txt", "Assets/PrefabResources/", ResourceManagerConfig.kIndexFileName);
+            string[] allInfo = File.ReadAllText(index_file_path).Split('\n');
+            Debug.LogError("--------"+allInfo.Length);
+            for (int i = 0; i < allInfo.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(allInfo[i]))
+                {
+                    string[] info = allInfo[i].Split(':');
+                    if (info.Length == 2)
+                    {
+                        buildInfo.Add(info[0], info[1]);
+                    }
+                }
+            }
+            foreach (var item in indexInfo)
+            {
+                if (buildInfo.ContainsKey(item.Key))
+                {
+                    buildInfo[item.Key] = item.Value;
+                }
+                else
+                {
+                    buildInfo.Add(item.Key, item.Value);
+                }
+            }
+            IndexFileContent.Clear();
+            foreach (var item in buildInfo)
+            {
+                IndexFileContent.AppendFormat("{0}:{1}", item.Key, item.Value);
+                IndexFileContent.AppendLine();
+            }
+            File.WriteAllText(index_file_path, IndexFileContent.ToString());
+
+            AssetBundleBuild indexbuild = new AssetBundleBuild();
+            indexbuild.assetBundleName = ResourceManagerConfig.kIndexFileName;
+            indexbuild.assetNames = new string[] { index_file_path };
+            indexbuild.addressableNames = new string[] { ResourceManagerConfig.kIndexFileName };
+
+            builds.Add(indexbuild);
+        }
+
+        BuildPipeline.BuildAssetBundles(BundleExportPath, builds.ToArray(), BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
+        //BuildPipeline.BuildAssetBundles(BundleExportPath, builds.ToArray(), BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
+        AssetDatabase.Refresh();
+    }
 
     [MenuItem("Bundle/My/Build")]
-    static void MyABundleUI(){
+    static void MyABundleAll(){
 
         IndexFileContent.Clear();
 
@@ -48,6 +166,10 @@ public class MyAssetBundle : Editor
         for (int i = 0; i < allDir.Length; i++)
         {
             string[] files = Directory.GetFiles(allDir[i], "*");
+            if (allDir[i].Contains("LuaScripts"))
+            {
+                files = Directory.GetFiles(allDir[i], "*", SearchOption.AllDirectories);
+            }
             if (files.Length == 0)
             {
                 continue;
@@ -58,20 +180,18 @@ public class MyAssetBundle : Editor
             List<string> addressableNames = new List<string>();
 
             build.assetBundleName = dirValue[dirValue.Length - 1] + "/" + dirValue[dirValue.Length - 1] + ".assetbundle";
-            Debug.Log("==============================================");
-            //Debug.Log("assetBundleName add:" + dirValue[dirValue.Length - 1] + "/" + dirValue[dirValue.Length - 1] + ".assetbundle");
+            
             for (int n = 0; n < files.Length; n++)
             {
                 if (Path.GetExtension(files[n]) == ".meta")
                 {
                     continue;
                 }
+
                 string addressableName = GetAddressableName(files[n]);
 
                 assetNames.Add(files[n]);
-                Debug.LogError("assetNames:" + files[n]);
                 addressableNames.Add(addressableName);
-                Debug.LogError("addressableName:" + addressableName);
                 
                 IndexFileContent.AppendFormat("{0}:{1}", addressableName, build.assetBundleName);
                 IndexFileContent.AppendLine();
@@ -102,7 +222,7 @@ public class MyAssetBundle : Editor
     private static string GetAddressableName(string file_path)
     {
         string addressable_name = file_path;
-        addressable_name = addressable_name.Replace("Assets/PrefabResources\\", "").Replace('\\', '/');
+        addressable_name = addressable_name.Replace("Assets/PrefabResources\\", "").Replace("Assets/PrefabResources/", "").Replace('\\', '/');
         int dot_pos = addressable_name.LastIndexOf('.');
         if (dot_pos != -1)
         {

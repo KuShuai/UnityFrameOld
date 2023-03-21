@@ -53,9 +53,12 @@ public class LuaScriptManager :Singleton<LuaScriptManager> ,ISingleton
 
     public UIConfig GetUIConfig(int id)
     {
-        UIConfig uIConfig = UIConfigSingleton.Instance.GetUIConfig(id);
+        UIConfig uIConfig = get_uiconfig?.Func<int, UIConfig>(id);
 
-        uIConfig = get_uiconfig?.Func<int, UIConfig>(id);
+        if (uIConfig == null)
+        {
+            uIConfig = UIConfigSingleton.Instance.GetUIConfig(id);
+        }
 
         return uIConfig;
     }

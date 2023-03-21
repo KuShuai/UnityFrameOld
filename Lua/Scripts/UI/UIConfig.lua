@@ -10,11 +10,6 @@ end
 
 function GetUIConfig(id)
 
-	Debug("AAAAA1111"..id..'	'..ui_config[id].name)
-	
-		--for	k,v in pairs(ui_config) do
-			--Debug("uiconfig" .. k..'	'..v.name)
-		--end
 	return ui_config[id]
 end
 

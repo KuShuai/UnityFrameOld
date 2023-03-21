@@ -25,7 +25,7 @@ public class MainStart : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            UIManager.OpenUI<UIPanel4>(UIPanelEnum.UIPanel4);
+            UIManager.OpenUIPanel(UIPanelEnum.UIPanel4);
         }
 
         if (Input.GetKeyDown(KeyCode.X))

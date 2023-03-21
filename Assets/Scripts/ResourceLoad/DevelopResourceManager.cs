@@ -94,4 +94,16 @@ public class DevelopResourceManager : ResourceManager
             _resources.Remove(asset_path);
         }
     }
+
+    public override bool LoadLuaScript(string asset_name, out byte[] content)
+    {
+        string full_path = ResourceManagerConfig.FormatString("{0}/../Lua/Scripts/{1}.lua", Application.dataPath, asset_name);
+        if (File.Exists(full_path))
+        {
+            content = File.ReadAllBytes(full_path);
+            return true;
+        }
+        content = null;
+        return false;
+    }
 }

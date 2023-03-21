@@ -5,7 +5,6 @@ using UnityEngine;
 public enum UIPanelEnum
 {
     None,
-    UIMainPanel,
 
     UIPanel1,
     UIPanel2,

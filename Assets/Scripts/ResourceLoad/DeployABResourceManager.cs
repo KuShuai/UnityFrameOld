@@ -101,8 +101,8 @@ public class DeployABResourceManager : ResourceManager
         //{
 
         //}
-
-        var mainBundle = _LoadBundleSync(assetLoadInfo.mainBundle);
+        //Debug.LogError(assetLoadInfo.mainBundle);
+        var mainBundle = _LoadBundleSync(assetLoadInfo.mainBundle.ToLower());
         if (mainBundle == null)
         {
             Debug.LogWarningFormat("DeployResourceManager::Load load asset main bundle failed: {0}, {1}", asset_path, assetLoadInfo.mainBundle);
@@ -252,21 +252,21 @@ public class DeployABResourceManager : ResourceManager
 
     public override bool LoadLuaScript(string asset_name, out byte[] content)
     {
-#if UNITY_EDITOR
-        string full_path = ResourceManagerConfig.FormatString("{0}/../Lua/Scripts/{1}.lua", Application.dataPath, asset_name);
-        if (File.Exists(full_path))
-        {
-            content = File.ReadAllBytes(full_path);
-            return true;
-        }
-        content = null;
-        return false;
-#else
+//#if UNITY_EDITOR
+//        string full_path = ResourceManagerConfig.FormatString("{0}/../Lua/Scripts/{1}.lua", Application.dataPath, asset_name);
+//        if (File.Exists(full_path))
+//        {
+//            content = File.ReadAllBytes(full_path);
+//            return true;
+//        }
+//        content = null;
+//        return false;
+//#else
         string path = RSPathUtil.LuaScript(asset_name);//LuaScripts/XXX.lua
         var asset = Load<TextAsset>(path);
         content = asset != null ? asset.bytes : null;
         return asset != null;
-#endif
+//#endif
     }
 
 }

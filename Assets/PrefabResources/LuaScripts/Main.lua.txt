@@ -1,7 +1,7 @@
---require 'Class'
---UIPanelEnum = require('PanelID')
+require 'Class'
+UIPanelEnum = require('PanelID')
 
---require 'UI.UIConfig'
+require 'UI.UIConfig'
 
 
 function Debug(fmt,...)
@@ -13,4 +13,4 @@ function Debug(fmt,...)
 	end
 end
 
-Debug("AAAAA")
+Debug("AAAAA1111")

@@ -64,7 +64,7 @@ function Class(classname,super)
 	setmetatable(class_type,{
 		__newindex = function(t,k,v)
 			vtbl[k] = v
-		end
+		end,
 		__index = vtbl
 	})
 	
