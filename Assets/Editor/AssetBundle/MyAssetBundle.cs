@@ -7,11 +7,21 @@ using UnityEngine;
 
 public class MyAssetBundle : Editor
 {
+    /// <summary>
+    /// 构建的assetbundle
+    /// </summary>
+    private static string BundleExportFolder = "Bundles";
+
+    /// <summary>
+    /// pc、ios可读写 android 只读
+    /// </summary>
+    private static string BundleExportPath = string.Format("{0}/{1}", ResourceManagerConfig.StreamingAssetsPath, BundleExportFolder);
+
     private static StringBuilder IndexFileContent = new StringBuilder();
     [MenuItem("Bundle/My/Clear")]
     static void ClearBundle()
     {
-        string BundleExportPath = Application.dataPath + "/Bundles";
+     //   string BundleExportPath = Application.dataPath + "/Bundles";
 
         if (Directory.Exists(BundleExportPath))
         {
@@ -35,7 +45,7 @@ public class MyAssetBundle : Editor
     static void MyABundleLua()
     {
         Dictionary<string, string> indexInfo = new Dictionary<string, string>();
-        string BundleExportPath = Application.dataPath + "/Bundles";
+        //string BundleExportPath = Application.dataPath + "/Bundles";
         string BundlePath = "Assets/PrefabResources/LuaScripts";
 
         string luaSrcPath = string.Format("{0}/../Lua/Scripts/", Application.dataPath);
@@ -143,8 +153,12 @@ public class MyAssetBundle : Editor
     static void MyABundleAll(){
 
         IndexFileContent.Clear();
+        IndexFileContent.AppendFormat("{0}", PlayerSettings.bundleVersion);
+        IndexFileContent.AppendLine();
+        File.WriteAllText(ResourceManagerConfig.kVersionFileInnerPath, IndexFileContent.ToString());
 
-        string BundleExportPath = Application.dataPath + "/Bundles";
+        IndexFileContent.Clear();
+        //string BundleExportPath = Application.dataPath + "/Bundles";
         string BundlePath = "Assets/PrefabResources";
         
         string LuaSrcPath = string.Format("{0}/../Lua/Scripts/", Application.dataPath);

@@ -42,7 +42,11 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
 
     public void SingletonInit()
     {
-        Debug.Log("VersionManager Init");
+    }
+
+    public void Init()
+    {
+            Debug.Log("VersionManager Init");
 
 #if UNITY_EDITOR
         if (!Directory.Exists(ResourceManagerConfig.PersistentDataPath))
@@ -113,36 +117,36 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
             //kVersionFileExtPath本地版本文件 -----可读写
             if (File.Exists(ResourceManagerConfig.kVersionFileExtPath))
             {
-                string ext_version_file = File.ReadAllText(ResourceManagerConfig.kVersionFileExtPath);
+                //string ext_version_file = File.ReadAllText(ResourceManagerConfig.kVersionFileExtPath);
 
-                int inner_v1;
-                int inner_v2;
-                int inner_v3;
-                int inner_v4;
-                int ext_v1;
-                int ext_v2;
-                int ext_v3;
-                int ext_v4;
-                ReadVersion(versionData, out inner_v1, out inner_v2, out inner_v3, out inner_v4);
-                ReadVersion(ext_version_file, out ext_v1, out ext_v2, out ext_v3, out ext_v4);
+                //int inner_v1;
+                //int inner_v2;
+                //int inner_v3;
+                //int inner_v4;
+                //int ext_v1;
+                //int ext_v2;
+                //int ext_v3;
+                //int ext_v4;
+                //ReadVersion(versionData, out inner_v1, out inner_v2, out inner_v3, out inner_v4);
+                //ReadVersion(ext_version_file, out ext_v1, out ext_v2, out ext_v3, out ext_v4);
 
-                //当版本号的前俩位不同时、或者第三位为0第四位不同时替换版本内容
-                if (inner_v1 != ext_v1 || inner_v2 != ext_v2)
-                {
-                    // todo delete update files
-                    File.WriteAllText(ResourceManagerConfig.kVersionFileExtPath, versionData);
+                ////当版本号的前俩位不同时、或者第三位为0第四位不同时替换版本内容
+                //if (inner_v1 != ext_v1 || inner_v2 != ext_v2)
+                //{
+                //    // todo delete update files
+                //    File.WriteAllText(ResourceManagerConfig.kVersionFileExtPath, versionData);
 
-                    Debug.Log("cp version to persistent data path");
-                }
-                else if (inner_v1 == ext_v1 && inner_v2 == ext_v2)
-                {
-                    if (ext_v3 == 0 && inner_v4 != ext_v4)
-                    {
-                        File.WriteAllText(ResourceManagerConfig.kVersionFileExtPath, versionData);
+                //    Debug.Log("cp version to persistent data path");
+                //}
+                //else if (inner_v1 == ext_v1 && inner_v2 == ext_v2)
+                //{
+                //    if (ext_v3 == 0 && inner_v4 != ext_v4)
+                //    {
+                //        File.WriteAllText(ResourceManagerConfig.kVersionFileExtPath, versionData);
 
-                        Debug.Log("cp version to persistent data path");
-                    }
-                }
+                //        Debug.Log("cp version to persistent data path");
+                //    }
+                //}
             }
             else
             {
@@ -353,6 +357,7 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
     }
 
     private Coroutine _versionCoroutine;
+
     /// <summary>
     /// 检查版本
     /// </summary>

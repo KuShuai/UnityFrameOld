@@ -14,8 +14,9 @@ public class GameDriver : MonoBehaviour
     private void Awake()
     {
         Inst = this;
-        EventManager.Instance.SingletonInit();
 
+
+        EventManager.Instance.SingletonInit();
 
         CriDevelopMode = false;
     }
@@ -31,7 +32,7 @@ public class GameDriver : MonoBehaviour
         {
             //AppChannelHelper.LoadAppChannel();
 
-            //VersionManager.Instance.SingletonInit();
+            VersionManager.Instance.Init();
     
         }
         yield return 0;
@@ -40,17 +41,16 @@ public class GameDriver : MonoBehaviour
         //¼ì²é°æ±¾
         //VersionManager.Instance.CheckingVersion();
 
-        ResourceManager.CreateInstance();
-        ResourceManager.Instance.Init();
-
-        LuaScriptManager.Instance.Init();
-
-        EnterGame();
 
     }
 
     public void EnterGame()
     {
+        ResourceManager.CreateInstance();
+        ResourceManager.Instance.Init();
+
+        LuaScriptManager.Instance.Init();
+
         UIManager.Instance.Init();
     }
 }
