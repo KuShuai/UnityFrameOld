@@ -52,7 +52,7 @@ public class AssetBundleMD5 : Editor
         string str = GetMD5(md5Byte) + ".assetbundle";
         return str;
     }
-    private static string GetPathMd5(string path)
+    public static string GetPathMd5(string path)
     {
         //return ResourceManagerConfig.FormatString("{0}.assetbundle", AssetDatabase.AssetPathToGUID(path));
         //MD5 º”√‹
@@ -63,7 +63,7 @@ public class AssetBundleMD5 : Editor
         return str;
     }
 
-    private static string GetMD5(byte[] retVal)
+    public static string GetMD5(byte[] retVal)
     {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < retVal.Length; i++)

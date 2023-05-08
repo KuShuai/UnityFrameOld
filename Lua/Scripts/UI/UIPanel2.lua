@@ -1,5 +1,8 @@
+local InputField
+local Button
+
 function Awake()
-	Debug('UIPanel2 Awake')
+	
 end
 
 function Start()
@@ -7,7 +10,7 @@ function Start()
 end
 
 function Update()
-	Debug('UIPanel2 Update')
+	
 end
 
 function Close()

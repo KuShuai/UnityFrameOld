@@ -192,9 +192,9 @@ public class MyAssetBundle : Editor
             AssetBundleBuild build = new AssetBundleBuild();
             List<string> assetNames = new List<string>();
             List<string> addressableNames = new List<string>();
-
+            //string md5 = AssetBundleMD5.GetPathMd5(allDir[i]);
             build.assetBundleName = dirValue[dirValue.Length - 1] + "/" + dirValue[dirValue.Length - 1] + ".assetbundle";
-            
+
             for (int n = 0; n < files.Length; n++)
             {
                 if (Path.GetExtension(files[n]) == ".meta")
