@@ -213,6 +213,8 @@ public class FTPUpAndDown
         req.Credentials = n;
 
         req.Method = WebRequestMethods.Ftp.ListDirectory;//用于获取FTP服务器上的文件的简短列表
+        //ListDirectoryDetails "05-08-2023  04:18PM       <DIR>          Bundles\r\n"
+        //ListDirectory "Bundles\r\n"
         //req.EnableSsl = true;//false时，所有的数据和命令都会是明文
         try
         {
