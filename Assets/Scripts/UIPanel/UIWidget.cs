@@ -183,6 +183,8 @@ public class UIWidget : MonoBehaviour
     //uifunction
     public virtual void OnPreLoad() { }
     public virtual void OnLoad() { }
+    public virtual void OnShow(System.Object obj) { }
+    public virtual void DisShow() { }
     public virtual void OnUpdate() { }
     public virtual void OnEvent(int event_id, EventParam param) { }
     public virtual void OnClose() { }

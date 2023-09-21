@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceManager :MonoBehaviour
 {
-    public delegate void ProcRes(Object res);
+    public delegate void ProcRes(UnityEngine.Object res);
 
     public delegate void ProcTextAsssetRes(byte[] bytes);
 
@@ -44,6 +45,7 @@ public class ResourceManager :MonoBehaviour
     }
 
     public virtual UnityEngine.Object Load(string asset_name) { return null; }
+    public virtual void LoadAsync(string asset_name,Action<object> action) { }
 
     public void LoadAndProcTextAsset(string path, ProcTextAsssetRes proc)
     {

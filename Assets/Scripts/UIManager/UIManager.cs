@@ -103,7 +103,7 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         }
     }
 
-    private static GameObject CreateUIObj(string name)
+    private static GameObject CreateUIObj(string name,object param)
     {
         GameObject obj = ResourceManager.Instance.Load(RSPathUtil.UI(name)) as GameObject;
         if (obj == null)
@@ -127,6 +127,7 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         if (panel != null)
         {
             panel.SetRender(canvas);
+            panel.OnShow(param);
         }
 
         //添加屏幕适配组件
@@ -148,17 +149,17 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         obj.transform.localScale = localScale;
     }
 
-    public static UIPanel OpenUIPanel(string name)
+    public static UIPanel OpenUIPanel(string name,object param = null)
     {
-        UIPanel panel = OpenUI<UIPanel>(name);
+        UIPanel panel = OpenUI<UIPanel>(name,param);
         return panel;
     }
 
-    public static UIPanel OpenUIPanel(UIPanelEnum panelEnum, object load_paramter = null)
+    public static UIPanel OpenUIPanel(UIPanelEnum panelEnum, object param = null, object load_paramter = null)
     {
-        return OpenUIPanel_LUA((int)panelEnum, load_paramter);
+        return OpenUIPanel_LUA((int)panelEnum, param,load_paramter);
     }
-    public static UIPanel OpenUIPanel_LUA(int panelEnum, object load_paramter = null)
+    public static UIPanel OpenUIPanel_LUA(int panelEnum,object param, object load_paramter = null)
     {
         var ui_config = LuaScriptManager.Instance.GetUIConfig(panelEnum);
         if (ui_config == null)
@@ -168,7 +169,7 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         }
         string panelName = ui_config.name;
 
-        UIPanel uiPanel = OpenUIPanel(panelName);
+        UIPanel uiPanel = OpenUIPanel(panelName,param);
         if (uiPanel == null)
         {
             return null;
@@ -179,19 +180,20 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         return uiPanel;
     }
 
-    public static GameObject OpenUI(string asset_name)
+    public static GameObject OpenUI(string asset_name,object param)
     {
         Debug.LogFormat("uimanager.cs open ui weidget :{0} {1}", asset_name, Time.frameCount);
 
         var uiName = WidgetName(asset_name);
 
+        //代表已经打开
         if (_dictUI.ContainsKey(uiName))
             return null;
         CreateRoot();
         if (_root == null)
             return null;
 
-        GameObject obj = CreateUIObj(uiName);
+        GameObject obj = CreateUIObj(uiName,param);
         if (obj == null)
             return null;
 
@@ -213,9 +215,9 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         _reorder = true;
     }
 
-    public static T OpenUI<T>(string uiName)where T : MonoBehaviour
+    public static T OpenUI<T>(string uiName, object param) where T : MonoBehaviour
     {
-        GameObject obj = OpenUI(uiName);
+        GameObject obj = OpenUI(uiName,param);
         if (obj == null)
         {
             return null;
@@ -224,14 +226,14 @@ public class UIManager : MonoSingleton<UIManager>, IMonoSingleton
         return ret;
     }
 
-    public static T OpenUI<T>(UIPanelEnum panelEnum)where T : MonoBehaviour
+    public static T OpenUI<T>(UIPanelEnum panelEnum,object param)where T : MonoBehaviour
     {
         UIConfig uiConfig = UIConfigSingleton.Instance.GetUIConfig(panelEnum);
         if (uiConfig == null)
         {
             return null;
         }
-        return OpenUI<T>(uiConfig.name);
+        return OpenUI<T>(uiConfig.name,param);
     }
 
     public static void CloseUI_LUA(int name,bool removeQuene = true,bool immediate = false)

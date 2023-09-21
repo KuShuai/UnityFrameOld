@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Util : MonoBehaviour
 {
@@ -18,6 +20,11 @@ public class Util : MonoBehaviour
         T ret = CreateObj<T>(name);
         DontDestroyOnLoad(ret.gameObject);
         return ret;
+    }
+
+    public static void uDebug(string param)
+    {
+        Debug.Log(param);
     }
 
     /// <summary>
@@ -45,5 +52,27 @@ public class Util : MonoBehaviour
         var yValue = y;
 
         return new Vector3((float)xValue, 30, (float)yValue);
+    }
+
+    public static void ClickGameObject(GameObject obj)
+    {
+        ExecuteEvents.Execute(obj, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
+    }
+
+    public static long ConvertDateTimeToLong(DateTime dt)
+    {
+        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+        TimeSpan toNow = dt.Subtract(dtStart);
+        long timeStamp = toNow.Ticks;
+        timeStamp = long.Parse(timeStamp.ToString().Substring(0, timeStamp.ToString().Length - 4));
+        return timeStamp;
+    }
+
+    public static DateTime ConvertLongToDateTime(long d, string dd = "0000")
+    {
+        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1, 8, 0, 0));
+        TimeSpan toNow = new TimeSpan(long.Parse(d + dd));
+        DateTime rt = dtStart.Add(toNow);
+        return rt;
     }
 }
