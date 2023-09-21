@@ -36,7 +36,7 @@ public class AssetBundleMD5 : Editor
         //file.Close();
     }
     private static MD5 md5 = new MD5CryptoServiceProvider();
-    private static string GetBundleName(string path)
+    public static string GetBundleName(string path)
     {
         //return ResourceManagerConfig.FormatString("{0}.assetbundle", AssetDatabase.AssetPathToGUID(path));
         //MD5 º”√‹

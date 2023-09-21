@@ -23,7 +23,6 @@ namespace XLua.CSObjectWrap
 			System.Type type = typeof(TMPro.TextMeshPro);
 			Utils.BeginObjectRegister(type, L, translator, 0, 17, 8, 4);
 			
-			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ComputeMarginSize", _m_ComputeMarginSize);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetMask", _m_SetMask);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetVerticesDirty", _m_SetVerticesDirty);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetLayoutDirty", _m_SetLayoutDirty);
@@ -39,6 +38,7 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "UpdateFontAsset", _m_UpdateFontAsset);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "CalculateLayoutInputHorizontal", _m_CalculateLayoutInputHorizontal);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "CalculateLayoutInputVertical", _m_CalculateLayoutInputVertical);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ComputeMarginSize", _m_ComputeMarginSize);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnPreRenderText", _e_OnPreRenderText);
 			
@@ -99,33 +99,6 @@ namespace XLua.CSObjectWrap
         
         
         
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_ComputeMarginSize(RealStatePtr L)
-        {
-		    try {
-            
-                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-            
-            
-                TMPro.TextMeshPro gen_to_be_invoked = (TMPro.TextMeshPro)translator.FastGetCSObj(L, 1);
-            
-            
-                
-                {
-                    
-                    gen_to_be_invoked.ComputeMarginSize(  );
-                    
-                    
-                    
-                    return 0;
-                }
-                
-            } catch(System.Exception gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
-            }
-            
-        }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_SetMask(RealStatePtr L)
@@ -585,6 +558,33 @@ namespace XLua.CSObjectWrap
                 {
                     
                     gen_to_be_invoked.CalculateLayoutInputVertical(  );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_ComputeMarginSize(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                TMPro.TextMeshPro gen_to_be_invoked = (TMPro.TextMeshPro)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                    gen_to_be_invoked.ComputeMarginSize(  );
                     
                     
                     

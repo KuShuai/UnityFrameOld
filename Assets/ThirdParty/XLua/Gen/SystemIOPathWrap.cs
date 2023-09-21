@@ -31,7 +31,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 20, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 24, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "ChangeExtension", _m_ChangeExtension_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Combine", _m_Combine_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetDirectoryName", _m_GetDirectoryName_xlua_st_);
@@ -47,6 +47,10 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetInvalidFileNameChars", _m_GetInvalidFileNameChars_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetInvalidPathChars", _m_GetInvalidPathChars_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetRandomFileName", _m_GetRandomFileName_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "Join", _m_Join_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "TryJoin", _m_TryJoin_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetRelativePath", _m_GetRelativePath_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "IsPathFullyQualified", _m_IsPathFullyQualified_xlua_st_);
             
 			
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "AltDirectorySeparatorChar", System.IO.Path.AltDirectorySeparatorChar);
@@ -179,9 +183,13 @@ namespace XLua.CSObjectWrap
         {
 		    try {
             
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
             
             
-                
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
                     
@@ -193,10 +201,24 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        System.ReadOnlySpan<char> gen_ret = System.IO.Path.GetDirectoryName( _path );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
                 
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.GetDirectoryName!");
             
         }
         
@@ -205,9 +227,13 @@ namespace XLua.CSObjectWrap
         {
 		    try {
             
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
             
             
-                
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
                     
@@ -219,10 +245,24 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        System.ReadOnlySpan<char> gen_ret = System.IO.Path.GetExtension( _path );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
                 
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.GetExtension!");
             
         }
         
@@ -231,9 +271,13 @@ namespace XLua.CSObjectWrap
         {
 		    try {
             
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
             
             
-                
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
                     
@@ -245,10 +289,24 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        System.ReadOnlySpan<char> gen_ret = System.IO.Path.GetFileName( _path );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
                 
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.GetFileName!");
             
         }
         
@@ -257,9 +315,13 @@ namespace XLua.CSObjectWrap
         {
 		    try {
             
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
             
             
-                
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
                     
@@ -271,10 +333,24 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        System.ReadOnlySpan<char> gen_ret = System.IO.Path.GetFileNameWithoutExtension( _path );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
                 
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.GetFileNameWithoutExtension!");
             
         }
         
@@ -285,7 +361,9 @@ namespace XLua.CSObjectWrap
             
             
             
-                
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
                     
@@ -297,25 +375,12 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
-                
-            } catch(System.Exception gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
-            }
-            
-        }
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_GetPathRoot_xlua_st_(RealStatePtr L)
-        {
-		    try {
-            
-            
-            
-                
+                if(gen_param_count == 2&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
+                    string _basePath = LuaAPI.lua_tostring(L, 2);
                     
-                        string gen_ret = System.IO.Path.GetPathRoot( _path );
+                        string gen_ret = System.IO.Path.GetFullPath( _path, _basePath );
                     
 					LuaAPI.lua_pushstring(L, gen_ret);
                     
@@ -327,6 +392,52 @@ namespace XLua.CSObjectWrap
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.GetFullPath!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetPathRoot_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
+                {
+                    string _path = LuaAPI.lua_tostring(L, 1);
+                    
+                        string gen_ret = System.IO.Path.GetPathRoot( _path );
+                    
+					LuaAPI.lua_pushstring(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        System.ReadOnlySpan<char> gen_ret = System.IO.Path.GetPathRoot( _path );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.GetPathRoot!");
             
         }
         
@@ -385,11 +496,27 @@ namespace XLua.CSObjectWrap
         {
 		    try {
             
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
             
             
-                
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
+                    
+                        bool gen_ret = System.IO.Path.HasExtension( _path );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
                     
                         bool gen_ret = System.IO.Path.HasExtension( _path );
                     
@@ -404,6 +531,8 @@ namespace XLua.CSObjectWrap
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.HasExtension!");
+            
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -411,9 +540,25 @@ namespace XLua.CSObjectWrap
         {
 		    try {
             
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
             
             
-                
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        bool gen_ret = System.IO.Path.IsPathRooted( _path );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _path = LuaAPI.lua_tostring(L, 1);
                     
@@ -429,6 +574,8 @@ namespace XLua.CSObjectWrap
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.IsPathRooted!");
             
         }
         
@@ -508,6 +655,179 @@ namespace XLua.CSObjectWrap
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Join_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 2&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)) 
+                {
+                    System.ReadOnlySpan<char> _path1;translator.Get(L, 1, out _path1);
+                    System.ReadOnlySpan<char> _path2;translator.Get(L, 2, out _path2);
+                    
+                        string gen_ret = System.IO.Path.Join( _path1, _path2 );
+                    
+					LuaAPI.lua_pushstring(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 3&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 3)) 
+                {
+                    System.ReadOnlySpan<char> _path1;translator.Get(L, 1, out _path1);
+                    System.ReadOnlySpan<char> _path2;translator.Get(L, 2, out _path2);
+                    System.ReadOnlySpan<char> _path3;translator.Get(L, 3, out _path3);
+                    
+                        string gen_ret = System.IO.Path.Join( _path1, _path2, _path3 );
+                    
+					LuaAPI.lua_pushstring(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.Join!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_TryJoin_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 3&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)&& translator.Assignable<System.Span<char>>(L, 3)) 
+                {
+                    System.ReadOnlySpan<char> _path1;translator.Get(L, 1, out _path1);
+                    System.ReadOnlySpan<char> _path2;translator.Get(L, 2, out _path2);
+                    System.Span<char> _destination;translator.Get(L, 3, out _destination);
+                    int _charsWritten;
+                    
+                        bool gen_ret = System.IO.Path.TryJoin( _path1, _path2, _destination, out _charsWritten );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    LuaAPI.xlua_pushinteger(L, _charsWritten);
+                        
+                    
+                    
+                    
+                    return 2;
+                }
+                if(gen_param_count == 4&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 3)&& translator.Assignable<System.Span<char>>(L, 4)) 
+                {
+                    System.ReadOnlySpan<char> _path1;translator.Get(L, 1, out _path1);
+                    System.ReadOnlySpan<char> _path2;translator.Get(L, 2, out _path2);
+                    System.ReadOnlySpan<char> _path3;translator.Get(L, 3, out _path3);
+                    System.Span<char> _destination;translator.Get(L, 4, out _destination);
+                    int _charsWritten;
+                    
+                        bool gen_ret = System.IO.Path.TryJoin( _path1, _path2, _path3, _destination, out _charsWritten );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    LuaAPI.xlua_pushinteger(L, _charsWritten);
+                        
+                    
+                    
+                    
+                    return 2;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.TryJoin!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetRelativePath_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+            
+            
+                
+                {
+                    string _relativeTo = LuaAPI.lua_tostring(L, 1);
+                    string _path = LuaAPI.lua_tostring(L, 2);
+                    
+                        string gen_ret = System.IO.Path.GetRelativePath( _relativeTo, _path );
+                    
+					LuaAPI.lua_pushstring(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_IsPathFullyQualified_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 1&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)) 
+                {
+                    string _path = LuaAPI.lua_tostring(L, 1);
+                    
+                        bool gen_ret = System.IO.Path.IsPathFullyQualified( _path );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _path;translator.Get(L, 1, out _path);
+                    
+                        bool gen_ret = System.IO.Path.IsPathFullyQualified( _path );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.IO.Path.IsPathFullyQualified!");
             
         }
         

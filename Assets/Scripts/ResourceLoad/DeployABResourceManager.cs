@@ -134,7 +134,7 @@ public class DeployABResourceManager : ResourceManager
     {
         bundle_name = ResourceManagerConfig.FormatString("Bundles/{0}", bundle_name);   //==================Bundles/index
 
-        string bundle_load_path = string.Format("{0}/{1}", Application.dataPath, bundle_name);
+        string bundle_load_path = string.Format("{0}/{1}", ResourceManagerConfig.StreamingAssetsPath, bundle_name);
 
         if (string.IsNullOrEmpty(bundle_load_path))
         {

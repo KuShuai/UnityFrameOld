@@ -15,6 +15,7 @@ public class UpLoadABFile : Editor
     static void UpLoadAllABFile()
     {
         _stringBuilder.Clear();
+        _stringBuilder.AppendLine(File.ReadAllText(ResourceManagerConfig.kVersionFileInnerPath));
         string[] files = Directory.GetFiles(ResourceManagerConfig.StreamingAssetsPath, "*",SearchOption.AllDirectories);
         for (int i = 0; i < files.Length; i++)
         {
@@ -23,10 +24,24 @@ public class UpLoadABFile : Editor
                 //上传并记录
                 //string md5 = AssetBundleMD5.GetPathMd5(files[i]);
                 //_stringBuilder.Append(md5);
+
                 string fileName = files[i].Replace(ResourceManagerConfig.StreamingAssetsPath, "");
-                Debug.LogError(files[i]);
+                string[] fileNames = fileName.Split('\\');
+                Debug.Log(fileName);
+                fileName = "";
+                for (int n = 0; n < fileNames.Length-1; n++)
+                {
+                    fileName += fileNames[n] + "\\";
+                }
+                string md5 = AssetBundleMD5.GetPathMd5(files[i]);
+                fileName += md5;
+                Debug.Log(fileName);
+                _stringBuilder.Append(files[i]).Append(":").AppendLine(fileName);
                 FTPUpAndDown.FtpUpLoadFile(files[i], fileName);
             }
         }
+        File.WriteAllText(ResourceManagerConfig.kVersionFileInnerPath, _stringBuilder.ToString());
+
+        FTPUpAndDown.FtpUpLoadFile(ResourceManagerConfig.kVersionFileInnerPath, "versionftp");
     }
 }

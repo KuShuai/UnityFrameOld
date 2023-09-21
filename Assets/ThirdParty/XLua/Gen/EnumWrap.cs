@@ -286,7 +286,7 @@ namespace XLua.CSObjectWrap
 		    Utils.BeginObjectRegister(typeof(System.Reflection.BindingFlags), L, translator, 0, 0, 0, 0);
 			Utils.EndObjectRegister(typeof(System.Reflection.BindingFlags), L, translator, null, null, null, null, null);
 			
-			Utils.BeginClassRegister(typeof(System.Reflection.BindingFlags), L, null, 21, 0, 0);
+			Utils.BeginClassRegister(typeof(System.Reflection.BindingFlags), L, null, 22, 0, 0);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Default", System.Reflection.BindingFlags.Default);
             
@@ -327,6 +327,8 @@ namespace XLua.CSObjectWrap
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "OptionalParamBinding", System.Reflection.BindingFlags.OptionalParamBinding);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "IgnoreReturn", System.Reflection.BindingFlags.IgnoreReturn);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "DoNotWrapExceptions", System.Reflection.BindingFlags.DoNotWrapExceptions);
             
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "__ToInt", __ToInt);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "__CastFrom", __CastFrom);
@@ -436,6 +438,10 @@ namespace XLua.CSObjectWrap
                 {
                     translator.PushSystemReflectionBindingFlags(L, System.Reflection.BindingFlags.IgnoreReturn);
                 }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "DoNotWrapExceptions"))
+                {
+                    translator.PushSystemReflectionBindingFlags(L, System.Reflection.BindingFlags.DoNotWrapExceptions);
+                }
 				else
                 {
                     return LuaAPI.luaL_error(L, "invalid string for System.Reflection.BindingFlags!");
@@ -542,7 +548,7 @@ namespace XLua.CSObjectWrap
 		    Utils.BeginObjectRegister(typeof(UnityEngine.KeyCode), L, translator, 0, 0, 0, 0);
 			Utils.EndObjectRegister(typeof(UnityEngine.KeyCode), L, translator, null, null, null, null, null);
 			
-			Utils.BeginClassRegister(typeof(UnityEngine.KeyCode), L, null, 327, 0, 0);
+			Utils.BeginClassRegister(typeof(UnityEngine.KeyCode), L, null, 329, 0, 0);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "None", UnityEngine.KeyCode.None);
             
@@ -798,11 +804,15 @@ namespace XLua.CSObjectWrap
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "LeftAlt", UnityEngine.KeyCode.LeftAlt);
             
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "LeftMeta", UnityEngine.KeyCode.LeftMeta);
+            
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "LeftCommand", UnityEngine.KeyCode.LeftCommand);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "LeftApple", UnityEngine.KeyCode.LeftApple);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "LeftWindows", UnityEngine.KeyCode.LeftWindows);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "RightMeta", UnityEngine.KeyCode.RightMeta);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "RightCommand", UnityEngine.KeyCode.RightCommand);
             
@@ -1732,6 +1742,10 @@ namespace XLua.CSObjectWrap
                 {
                     translator.PushUnityEngineKeyCode(L, UnityEngine.KeyCode.LeftAlt);
                 }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "LeftMeta"))
+                {
+                    translator.PushUnityEngineKeyCode(L, UnityEngine.KeyCode.LeftMeta);
+                }
 				else if (LuaAPI.xlua_is_eq_str(L, 1, "LeftCommand"))
                 {
                     translator.PushUnityEngineKeyCode(L, UnityEngine.KeyCode.LeftCommand);
@@ -1743,6 +1757,10 @@ namespace XLua.CSObjectWrap
 				else if (LuaAPI.xlua_is_eq_str(L, 1, "LeftWindows"))
                 {
                     translator.PushUnityEngineKeyCode(L, UnityEngine.KeyCode.LeftWindows);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "RightMeta"))
+                {
+                    translator.PushUnityEngineKeyCode(L, UnityEngine.KeyCode.RightMeta);
                 }
 				else if (LuaAPI.xlua_is_eq_str(L, 1, "RightCommand"))
                 {

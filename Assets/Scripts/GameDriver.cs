@@ -23,7 +23,8 @@ public class GameDriver : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(InitialData());   
+        EnterGame();
+        //StartCoroutine(InitialData());
     }
 
     IEnumerator InitialData()
@@ -32,15 +33,14 @@ public class GameDriver : MonoBehaviour
         {
             //AppChannelHelper.LoadAppChannel();
 
-            VersionManager.Instance.Init();
+            //VersionManager.Instance.Init();
     
         }
         yield return 0;
 
         Debug.LogError("******检查版本");
         //检查版本
-        //VersionManager.Instance.CheckingVersion();
-
+        VersionManager.Instance.CheckingVersion();
 
     }
 
@@ -49,7 +49,7 @@ public class GameDriver : MonoBehaviour
         ResourceManager.CreateInstance();
         ResourceManager.Instance.Init();
 
-        LuaScriptManager.Instance.Init();
+        //LuaScriptManager.Instance.Init();
 
         UIManager.Instance.Init();
     }

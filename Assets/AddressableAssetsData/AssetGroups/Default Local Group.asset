@@ -16,15 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d9979023eb6ca0f408d2dcd6dbb65967
-  m_SerializeEntries:
-  - m_GUID: 573ac53c334415945bf239de2c2f0511
-    m_Address: PlayerControllerFPS
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3bb96f39e4e66ba438c0942c2f8bf2d1
-    m_Address: Canvas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 75f3b539eedeeb547893dd480d5754da, type: 2}
   m_SchemaSet:

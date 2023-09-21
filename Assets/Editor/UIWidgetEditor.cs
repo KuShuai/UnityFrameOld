@@ -43,6 +43,10 @@ public class UIWidgetEditor : Editor
                             AttachWidget(obj, panel.transform, so_links);
                             break;
                         }
+                        if (parentsDict.ContainsKey(hashCode))
+                        {
+                            break;
+                        }
                         trans = trans.parent;
                     }
                 }

@@ -21,7 +21,7 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(UnityEngine.Camera);
-			Utils.BeginObjectRegister(type, L, translator, 0, 42, 57, 44);
+			Utils.BeginObjectRegister(type, L, translator, 0, 42, 58, 44);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Reset", _m_Reset);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ResetTransparencySortSettings", _m_ResetTransparencySortSettings);
@@ -123,6 +123,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "areVRStereoViewMatricesWithinSingleCullTolerance", _g_get_areVRStereoViewMatricesWithinSingleCullTolerance);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "stereoTargetEye", _g_get_stereoTargetEye);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "stereoActiveEye", _g_get_stereoActiveEye);
+            Utils.RegisterFunc(L, Utils.GETTER_IDX, "sceneViewFilterMode", _g_get_sceneViewFilterMode);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "commandBufferCount", _g_get_commandBufferCount);
             
 			Utils.RegisterFunc(L, Utils.SETTER_IDX, "nearClipPlane", _s_set_nearClipPlane);
@@ -2743,6 +2744,21 @@ namespace XLua.CSObjectWrap
 			
 			
 				translator.Push(L, UnityEngine.Camera.allCameras);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_sceneViewFilterMode(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+			
+                UnityEngine.Camera gen_to_be_invoked = (UnityEngine.Camera)translator.FastGetCSObj(L, 1);
+				translator.Push(L, gen_to_be_invoked.sceneViewFilterMode);
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }

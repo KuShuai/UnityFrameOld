@@ -42,10 +42,11 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
 
     public void SingletonInit()
     {
-    }
+        Debug.Log("SingletonInit");
+    //}
 
-    public void Init()
-    {
+    //public void Init()
+    //{
             Debug.Log("VersionManager Init");
 
 #if UNITY_EDITOR
@@ -70,6 +71,7 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
         Directory.CreateDirectory(ResourceManagerConfig.AssetDownloadPath);
 
         PreformAppVersion();
+        Debug.Log("Init");
     }
 
     private void PreformAppVersion()
@@ -100,20 +102,21 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
         string versionData = null;
 #if UNITY_EDITOR //|| UNITY_IOS
         //从Bundle文件中读取版本信息----只读
-        if (File.Exists(ResourceManagerConfig.kVersionFileInnerPath))
+        if (File.Exists(ResourceManagerConfig.kVersionFileExtPath))
         {
-            versionData = File.ReadAllText(ResourceManagerConfig.kVersionFileInnerPath);
+            versionData = File.ReadAllText(ResourceManagerConfig.kVersionFileExtPath);
 
-            Debug.LogFormat("read version data {0}", ResourceManagerConfig.kVersionFileInnerPath);
+            Debug.LogFormat("read version data {0}:{1}", ResourceManagerConfig.kVersionFileExtPath,versionData);
         }
 #endif
         if (string.IsNullOrEmpty(versionData))
         {
-            _check_version = false;
-            return;
+            FTPUpAndDown.FtpDownLoadFile("versionftp", ResourceManagerConfig.kVersionFileExtPath);
+            _check_version = true;
+            //return;
         }
-        else
-        {
+        //else
+        //{
             //kVersionFileExtPath本地版本文件 -----可读写
             if (File.Exists(ResourceManagerConfig.kVersionFileExtPath))
             {
@@ -153,7 +156,7 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
                 File.WriteAllText(ResourceManagerConfig.kVersionFileExtPath, versionData);
                 Debug.Log("cp version to persistent data path");
             }
-        }
+    //    }
 
         if (File.Exists(ResourceManagerConfig.kVersionFileExtPath))
         {
@@ -177,6 +180,7 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
     private bool ReadVersionFile(string path,VersionFile version_file)
     {
         string[] version_file_lines = File.ReadAllLines(path);
+        Debug.Log(path);
         return ParseVersionFile(version_file_lines, version_file);
     }
 
@@ -521,9 +525,9 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
             //http://134.175.211.83/get_info?channel={1}&build_target={2}&build_number={3}.{4}&platform={5}
             string url = ResourceManagerConfig.FormatString("{0}/{1}", domain[retry], router);
             Debug.LogFormat("Http request :{0}", url);
-            url = "http://192.168.3.125/";
-            url = "http://kun.show.ghostry.cn/?int=5";
-            url = @"File:///E:/Project/111/Frame/Info";
+            url = "ftp://192.168.3.125:1234/versionftp";
+            //url = "http://kun.show.ghostry.cn/?int=5";
+            //url = @"File:///E:/Project/111/Frame/Info";
 
             WWW request = new WWW(url);
 
@@ -540,19 +544,16 @@ public class VersionManager : MonoSingleton<VersionManager>,IMonoSingleton
             //    }
             //}
 
-            yield return request;
+            yield return new WaitUntil(()=> request.isDone);
 
-            if (request.isDone)
+            Debug.LogError(request.text);
+            Debug.Log("success");
+            done_func(request);
+            if (string.IsNullOrEmpty(request.error))
             {
-                Debug.LogError(request.text);
-                Debug.Log("success");
-                done_func(request);
-                if (string.IsNullOrEmpty(request.error))
-                {
-                    Debug.Log("xxxx");
-                }
-                yield break;
+                Debug.Log("xxxx");
             }
+            yield break;
             Debug.LogError("======" + request.error + "======");
             Debug.LogErrorFormat("http request failed({0}) url {1}", retry, url);
             Debug.LogErrorFormat("http request failed({0}) error {1}", retry, request.error);

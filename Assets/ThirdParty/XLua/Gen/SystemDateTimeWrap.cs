@@ -21,7 +21,7 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(System.DateTime);
-			Utils.BeginObjectRegister(type, L, translator, 5, 27, 13, 0);
+			Utils.BeginObjectRegister(type, L, translator, 5, 28, 13, 0);
 			Utils.RegisterFunc(L, Utils.OBJ_META_IDX, "__add", __AddMeta);
             Utils.RegisterFunc(L, Utils.OBJ_META_IDX, "__sub", __SubMeta);
             Utils.RegisterFunc(L, Utils.OBJ_META_IDX, "__eq", __EqMeta);
@@ -52,6 +52,7 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ToShortDateString", _m_ToShortDateString);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ToShortTimeString", _m_ToShortTimeString);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ToString", _m_ToString);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "TryFormat", _m_TryFormat);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ToUniversalTime", _m_ToUniversalTime);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetDateTimeFormats", _m_GetDateTimeFormats);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetTypeCode", _m_GetTypeCode);
@@ -76,7 +77,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 16, 3, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 17, 3, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "Compare", _m_Compare_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "DaysInMonth", _m_DaysInMonth_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Equals", _m_Equals_xlua_st_);
@@ -94,10 +95,11 @@ namespace XLua.CSObjectWrap
 			
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "MinValue", System.DateTime.MinValue);
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "MaxValue", System.DateTime.MaxValue);
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "UnixEpoch", System.DateTime.UnixEpoch);
             
 			Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "Now", _g_get_Now);
-            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "UtcNow", _g_get_UtcNow);
             Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "Today", _g_get_Today);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "UtcNow", _g_get_UtcNow);
             
 			
 			
@@ -1206,6 +1208,45 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
+                if(gen_param_count == 3&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.IFormatProvider>(L, 2)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 3)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 2, typeof(System.IFormatProvider));
+                    System.Globalization.DateTimeStyles _styles;translator.Get(L, 3, out _styles);
+                    
+                        System.DateTime gen_ret = System.DateTime.Parse( _s, _provider, _styles );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 2&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.IFormatProvider>(L, 2)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 2, typeof(System.IFormatProvider));
+                    
+                        System.DateTime gen_ret = System.DateTime.Parse( _s, _provider );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    
+                        System.DateTime gen_ret = System.DateTime.Parse( _s );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
                 
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
@@ -1255,6 +1296,35 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
+                if(gen_param_count == 4&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 4)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    System.ReadOnlySpan<char> _format;translator.Get(L, 2, out _format);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
+                    System.Globalization.DateTimeStyles _style;translator.Get(L, 4, out _style);
+                    
+                        System.DateTime gen_ret = System.DateTime.ParseExact( _s, _format, _provider, _style );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 3&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    System.ReadOnlySpan<char> _format;translator.Get(L, 2, out _format);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
+                    
+                        System.DateTime gen_ret = System.DateTime.ParseExact( _s, _format, _provider );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
                 if(gen_param_count == 4&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)&& translator.Assignable<string[]>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 4)) 
                 {
                     string _s = LuaAPI.lua_tostring(L, 1);
@@ -1263,6 +1333,35 @@ namespace XLua.CSObjectWrap
                     System.Globalization.DateTimeStyles _style;translator.Get(L, 4, out _style);
                     
                         System.DateTime gen_ret = System.DateTime.ParseExact( _s, _formats, _provider, _style );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 4&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<string[]>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 4)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    string[] _formats = (string[])translator.GetObject(L, 2, typeof(string[]));
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
+                    System.Globalization.DateTimeStyles _style;translator.Get(L, 4, out _style);
+                    
+                        System.DateTime gen_ret = System.DateTime.ParseExact( _s, _formats, _provider, _style );
+                    
+					translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(gen_param_count == 3&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<string[]>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    string[] _formats = (string[])translator.GetObject(L, 2, typeof(string[]));
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
+                    
+                        System.DateTime gen_ret = System.DateTime.ParseExact( _s, _formats, _provider );
                     
 					translator.Push(L, gen_ret);
                     
@@ -1656,6 +1755,82 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_TryFormat(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                System.DateTime gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
+            
+            
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 4&& translator.Assignable<System.Span<char>>(L, 2)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 3)&& translator.Assignable<System.IFormatProvider>(L, 4)) 
+                {
+                    System.Span<char> _destination;translator.Get(L, 2, out _destination);
+                    int _charsWritten;
+                    System.ReadOnlySpan<char> _format;translator.Get(L, 3, out _format);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 4, typeof(System.IFormatProvider));
+                    
+                        bool gen_ret = gen_to_be_invoked.TryFormat( _destination, out _charsWritten, _format, _provider );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    LuaAPI.xlua_pushinteger(L, _charsWritten);
+                        
+                    
+                    
+                        translator.Update(L, 1, gen_to_be_invoked);
+                    
+                    
+                    return 2;
+                }
+                if(gen_param_count == 3&& translator.Assignable<System.Span<char>>(L, 2)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 3)) 
+                {
+                    System.Span<char> _destination;translator.Get(L, 2, out _destination);
+                    int _charsWritten;
+                    System.ReadOnlySpan<char> _format;translator.Get(L, 3, out _format);
+                    
+                        bool gen_ret = gen_to_be_invoked.TryFormat( _destination, out _charsWritten, _format );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    LuaAPI.xlua_pushinteger(L, _charsWritten);
+                        
+                    
+                    
+                        translator.Update(L, 1, gen_to_be_invoked);
+                    
+                    
+                    return 2;
+                }
+                if(gen_param_count == 2&& translator.Assignable<System.Span<char>>(L, 2)) 
+                {
+                    System.Span<char> _destination;translator.Get(L, 2, out _destination);
+                    int _charsWritten;
+                    
+                        bool gen_ret = gen_to_be_invoked.TryFormat( _destination, out _charsWritten );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    LuaAPI.xlua_pushinteger(L, _charsWritten);
+                        
+                    
+                    
+                        translator.Update(L, 1, gen_to_be_invoked);
+                    
+                    
+                    return 2;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to System.DateTime.TryFormat!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_ToUniversalTime(RealStatePtr L)
         {
 		    try {
@@ -1712,9 +1887,41 @@ namespace XLua.CSObjectWrap
                     
                     return 2;
                 }
+                if(gen_param_count == 1&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    System.DateTime _result;
+                    
+                        bool gen_ret = System.DateTime.TryParse( _s, out _result );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    translator.Push(L, _result);
+                        
+                    
+                    
+                    
+                    return 2;
+                }
                 if(gen_param_count == 3&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)&& translator.Assignable<System.IFormatProvider>(L, 2)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 3)) 
                 {
                     string _s = LuaAPI.lua_tostring(L, 1);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 2, typeof(System.IFormatProvider));
+                    System.Globalization.DateTimeStyles _styles;translator.Get(L, 3, out _styles);
+                    System.DateTime _result;
+                    
+                        bool gen_ret = System.DateTime.TryParse( _s, _provider, _styles, out _result );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    translator.Push(L, _result);
+                        
+                    
+                    
+                    
+                    return 2;
+                }
+                if(gen_param_count == 3&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.IFormatProvider>(L, 2)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 3)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
                     System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 2, typeof(System.IFormatProvider));
                     System.Globalization.DateTimeStyles _styles;translator.Get(L, 3, out _styles);
                     System.DateTime _result;
@@ -1767,9 +1974,45 @@ namespace XLua.CSObjectWrap
                     
                     return 2;
                 }
+                if(gen_param_count == 4&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<System.ReadOnlySpan<char>>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 4)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
+                    System.ReadOnlySpan<char> _format;translator.Get(L, 2, out _format);
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
+                    System.Globalization.DateTimeStyles _style;translator.Get(L, 4, out _style);
+                    System.DateTime _result;
+                    
+                        bool gen_ret = System.DateTime.TryParseExact( _s, _format, _provider, _style, out _result );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    translator.Push(L, _result);
+                        
+                    
+                    
+                    
+                    return 2;
+                }
                 if(gen_param_count == 4&& (LuaAPI.lua_isnil(L, 1) || LuaAPI.lua_type(L, 1) == LuaTypes.LUA_TSTRING)&& translator.Assignable<string[]>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 4)) 
                 {
                     string _s = LuaAPI.lua_tostring(L, 1);
+                    string[] _formats = (string[])translator.GetObject(L, 2, typeof(string[]));
+                    System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
+                    System.Globalization.DateTimeStyles _style;translator.Get(L, 4, out _style);
+                    System.DateTime _result;
+                    
+                        bool gen_ret = System.DateTime.TryParseExact( _s, _formats, _provider, _style, out _result );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    translator.Push(L, _result);
+                        
+                    
+                    
+                    
+                    return 2;
+                }
+                if(gen_param_count == 4&& translator.Assignable<System.ReadOnlySpan<char>>(L, 1)&& translator.Assignable<string[]>(L, 2)&& translator.Assignable<System.IFormatProvider>(L, 3)&& translator.Assignable<System.Globalization.DateTimeStyles>(L, 4)) 
+                {
+                    System.ReadOnlySpan<char> _s;translator.Get(L, 1, out _s);
                     string[] _formats = (string[])translator.GetObject(L, 2, typeof(string[]));
                     System.IFormatProvider _provider = (System.IFormatProvider)translator.GetObject(L, 3, typeof(System.IFormatProvider));
                     System.Globalization.DateTimeStyles _style;translator.Get(L, 4, out _style);
@@ -2056,20 +2299,6 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _g_get_UtcNow(RealStatePtr L)
-        {
-		    try {
-                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			
-			
-				translator.Push(L, System.DateTime.UtcNow);
-            } catch(System.Exception gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
-            }
-            return 1;
-        }
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _g_get_Second(RealStatePtr L)
         {
 		    try {
@@ -2137,6 +2366,20 @@ namespace XLua.CSObjectWrap
 			
                 System.DateTime gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
 				LuaAPI.xlua_pushinteger(L, gen_to_be_invoked.Year);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_UtcNow(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+			
+				translator.Push(L, System.DateTime.UtcNow);
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }

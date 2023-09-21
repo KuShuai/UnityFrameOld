@@ -21,9 +21,10 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(Cinemachine.CinemachineBrain);
-			Utils.BeginObjectRegister(type, L, translator, 0, 5, 16, 10);
+			Utils.BeginObjectRegister(type, L, translator, 0, 6, 16, 10);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ManualUpdate", _m_ManualUpdate);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "IsLiveInBlend", _m_IsLiveInBlend);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetCameraOverride", _m_SetCameraOverride);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ReleaseCameraOverride", _m_ReleaseCameraOverride);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ComputeCurrentBlend", _m_ComputeCurrentBlend);
@@ -151,6 +152,36 @@ namespace XLua.CSObjectWrap
                     
                     
                     return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_IsLiveInBlend(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                Cinemachine.CinemachineBrain gen_to_be_invoked = (Cinemachine.CinemachineBrain)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    Cinemachine.ICinemachineCamera _vcam = (Cinemachine.ICinemachineCamera)translator.GetObject(L, 2, typeof(Cinemachine.ICinemachineCamera));
+                    
+                        bool gen_ret = gen_to_be_invoked.IsLiveInBlend( _vcam );
+                    
+					LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
                 }
                 
             } catch(System.Exception gen_e) {

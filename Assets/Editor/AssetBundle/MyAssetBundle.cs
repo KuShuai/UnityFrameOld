@@ -230,7 +230,7 @@ public class MyAssetBundle : Editor
         }
         BuildPipeline.BuildAssetBundles(BundleExportPath, builds.ToArray(), BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
 
-        Debug.Log("build success count " + builds.Count);
+        Debug.Log("build path :"+ BundleExportPath + "build success count " + builds.Count);
     }
 
     private static string GetAddressableName(string file_path)
