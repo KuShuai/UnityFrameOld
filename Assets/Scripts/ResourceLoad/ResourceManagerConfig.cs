@@ -8,11 +8,11 @@ public class ResourceManagerConfig
     public static string StreamingAssetsPath = string.Format("{0}/../streaming", Application.dataPath);
     public static string TemporaryCachePath = string.Format("{0}/../temporary", Application.dataPath);
 #else
-    //Application.persistentDataPath 移动端唯一一个可读写操作的文件夹
+    //Application.persistentDataPath ?????Ψ???????д???????????
     public static string PersistentDataPath = Application.persistentDataPath;
-    //Application.streamingAssetsPath 只读
+    //Application.streamingAssetsPath ???
     public static string StreamingAssetsPath = Application.streamingAssetsPath;
-    //Application.temporaryCachePath 临时数据缓存目录 公共路径
+    //Application.temporaryCachePath ???????????? ????·??
     public static string TemporaryCachePath = Application.temporaryCachePath;
 #endif
 
@@ -25,7 +25,7 @@ public class ResourceManagerConfig
 
     //load path
     /// <summary>
-    /// 内部路径 
+    /// ???·?? 
     /// </summary>
     public static string kAssetLoadInnerPath
     {
@@ -36,7 +36,7 @@ public class ResourceManagerConfig
     }
 
     /// <summary>
-    /// 外部路径
+    /// ??·??
     /// </summary>
     public static string kAssetLoadExtPath
     {

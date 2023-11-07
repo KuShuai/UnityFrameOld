@@ -80,7 +80,7 @@ public class LuaScriptManager :Singleton<LuaScriptManager> ,ISingleton
 
     private byte[] LuaLoader(ref string filePath)
     {
-        filePath = filePath.Replace('.', '/');
+        filePath = filePath.Replace('.', '/')+".lua";
         byte[] lua_code;
         ResourceManager.Instance.LoadLuaScript(filePath,out lua_code);
         return lua_code;
