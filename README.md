@@ -33,6 +33,9 @@
 ### [`Excel转换工具`](https://github.com/KuShuai/Frame/tree/main/ConfigTools/Configs/Excel "点击跳转到文件夹")
   * ===
     > Excel数据化，方便开发读取相关数据内容
+### [`计时器模块`](https://github.com/KuShuai/UnityFrameOld/blob/main/Assets/Scripts/TimerManager.cs "点击跳转到文件夹")
+  * TimerManager.cs
+      >统一管理计时方法回调。支持第一次触发时间、以及之后的触发时间间隔、触发次数；对于项目中计时的功能统一管理、减少代码中Update()方法的调用，以减少重复代码、提高运行效率。
 
 ## 2：AssetBundle
 * 什么是Assetbundle
