@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +8,22 @@ public class AStarPanel : UIPanel
 {
     public GridControl gridPerfab;
     public int gridSize;
-    public Transform gridParent;
-    private Toggle R_Player_Toggle = null;
+    public Transform gridParent;private Toggle R_Player_Toggle = null;
+    public EvaluationFunctionType evaluationFunctionType;
     private Toggle R_Destination_Toggle = null;
     private Toggle R_Obstacle_Toggle = null;
+    private Button R_AStar_Button = null;
+    private Button R_Clear_Button = null;
 
     public override void OnPreLoad()
     {
-        base.OnPreLoad();
-        
+        base.Awake();
         R_Player_Toggle = GetUIWidget<Toggle>("R_Player_Toggle");
         R_Destination_Toggle = GetUIWidget<Toggle>("R_Destination_Toggle");
         R_Obstacle_Toggle = GetUIWidget<Toggle>("R_Obstacle_Toggle");
+        R_AStar_Button = GetUIWidget<Button>("R_AStar_Button");
+        R_Clear_Button = GetUIWidget<Button>("R_Clear_Button");
+
         R_Player_Toggle.onValueChanged.AddListener((isOn) => {
             if (isOn)
             {
@@ -35,9 +40,20 @@ public class AStarPanel : UIPanel
             {
                 m_settiingState = GridState.Obstacle;
             }});
+        
+        R_AStar_Button.onClick.AddListener(AStarOnClickListener);
+        R_Clear_Button.onClick.AddListener(() =>
+        {
+            
+            m_astar.ClearDestinationNode();
+        });
     }
 
     public bool isShowGridHint;
+    public bool isStepOneByOne;
+    
+    private AStar m_astar;
+    IEnumerator m_aStarProcess;
     
     private GridControl[,] m_map;
     private Int2 m_mapSize;
@@ -49,6 +65,7 @@ public class AStarPanel : UIPanel
     {
         base.OnLoad();
         InitMap();
+        m_astar = new AStar();
     }
 
     private void InitMap()
@@ -111,4 +128,26 @@ public class AStarPanel : UIPanel
                 break;
         }
     }
+
+    private void AStarOnClickListener()
+    {
+        if (!m_astar.isInit)
+        {
+            m_astar.Init(m_map,m_mapSize,m_player.position,m_destination.position,evaluationFunctionType);
+            m_aStarProcess = m_astar.Start();
+        }
+
+        if (isStepOneByOne)
+        {
+            m_aStarProcess.MoveNext();
+        }
+        else
+        {
+            while (m_aStarProcess.MoveNext())
+            {
+                
+            }            
+        }
+    }
+    
 }

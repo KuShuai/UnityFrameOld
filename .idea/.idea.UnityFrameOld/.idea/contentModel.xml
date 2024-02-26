@@ -76,9 +76,13 @@
             <e p="DevGame.cs" t="Include" />
           </e>
           <e p="AStar" t="Include">
+            <e p="AStar.cs" t="Include" />
             <e p="AStarPanel.cs" t="Include" />
             <e p="GridControl.cs" t="Include" />
             <e p="Int2.cs" t="Include" />
+            <e p="Navigation" t="Include">
+              <e p="PlayerNavigation.cs" t="Include" />
+            </e>
           </e>
           <e p="AutoGenerateConfigs" t="Include">
             <e p="TestConfig.cs" t="Include" />

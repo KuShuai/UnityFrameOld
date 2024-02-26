@@ -8,13 +8,13 @@ using JetBrains.Annotations;
 
 public enum GridState
 {
-    Default,
-    Player,
-    Obstacle,
-    Destination,
-    Path,
-    InOpen,
-    InClose
+    Default,//默认
+    Player,//玩家
+    Obstacle,//障碍
+    Destination,//目的地
+    Path,//路径
+    InOpen,//探索边缘
+    InClose//探索中央
 }
 
 public class GridControl : MonoBehaviour
@@ -41,7 +41,7 @@ public class GridControl : MonoBehaviour
 
     private Int2 m_position;
     public Int2 position => m_position;
-    private bool m_isShowHint;
+    private bool m_isCanShowHint;
     private GridState m_state;
     public GridState state
     {
@@ -59,7 +59,7 @@ public class GridControl : MonoBehaviour
     public void Init(Int2 pos,bool isShowHint,Action<GridControl> callback = null)
     {
         m_position = pos;
-        m_isShowHint = isShowHint;
+        m_isCanShowHint = isShowHint;
         onClickCallback = callback;
         m_state = GridState.Default;
         btn.onClick.AddListener(OnClickListener);
@@ -68,5 +68,40 @@ public class GridControl : MonoBehaviour
     private void OnClickListener()
     {
         onClickCallback?.Invoke(this);
+    }
+
+    /// <summary>
+    /// 当网格被加入Open队列或者值有变化的时候更新信息
+    /// </summary>
+    /// <param name="g"></param>
+    /// <param name="h"></param>
+    /// <param name="f"></param>
+    /// <param name="forward"></param>
+    public void ShowOrUpDateAStarHint(int g,int h,int f,Vector2 forward)
+    {
+        if (state == GridState.Default || state == GridState.InOpen)
+        {
+            state = GridState.InOpen;
+            if (m_isCanShowHint)
+            {
+                text.text = g.ToString();
+                //gText.text = $"G:\n{g.ToString()}";
+                //hText.text = $"H:\n{h.ToString()}";
+                //fText.text = $"F:\n{f.ToString()}";
+                //Arrow.SetActive(true);
+                //Arrow.transform.up = -forward;
+            }
+        }
+    }
+    
+    //当网格加入Close队列
+    public void ChangeInOpenStateToInClose() {
+        if(state == GridState.InOpen)
+            state = GridState.InClose;
+    }
+
+    public void ChangeToPathState()
+    {
+        state = GridState.Path;
     }
 }

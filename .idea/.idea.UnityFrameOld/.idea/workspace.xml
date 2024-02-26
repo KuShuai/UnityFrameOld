@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9939da6-3c38-4b05-b372-9c919a8087d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/riderModule.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ResourceLoad/ResourceManagerConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ResourceLoad/ResourceManagerConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/XLua/LuaScriptManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/XLua/LuaScriptManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/Runtime Transform Gizmos/Scripts/Gizmos/RotationGizmo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/Runtime Transform Gizmos/Scripts/Gizmos/RotationGizmo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/HDRPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/HDRPProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityFrameOld/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AStar.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AStar.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AStar/AStarPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AStar/AStarPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AStar/GridControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AStar/GridControl.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +19,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0DF1829D-D6EE-413F-A58B-9A0FDEBA9359/57/403e196a/AssetBundleManifest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0DF1829D-D6EE-413F-A58B-9A0FDEBA9359/aa/26f23d22/AssetBundleRequest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AStar/GridControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AStar/AStar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AStar/Int2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4ECA0AA8-5B96-43A1-9916-9BB7E91FC8D3/a0/5fcf12e8/UnitySynchronizationContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../unity40/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../unity40/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/437BA245-D840-4784-B9FB-AB9B439AC908/0d/8eb5026c/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AStar/AStarPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../unity40/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/StandaloneInputModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../unity40/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Layout/CanvasScaler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0DF1829D-D6EE-413F-A58B-9A0FDEBA9359/57/403e196a/AssetBundleManifest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../unity40/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23CEDEFA-2950-47EE-A2D0-8A34071111A5/1a/87164e32/Node.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/437BA245-D840-4784-B9FB-AB9B439AC908/90/0b76cce4/HashHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AStar/GridControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/437BA245-D840-4784-B9FB-AB9B439AC908/f5/f63e574a/ObjectEqualityComparer`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -41,10 +42,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ResourceLoad/ResourceManagerConfig.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ResourceLoad/DeployABResourceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/XLua/LuaScriptManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AStar/GridControl.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AStar/AStarPanel.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AStar/Int2.cs" />
       <option value="$PROJECT_DIR$/Assets/ThirdParty/Runtime Transform Gizmos/Scripts/Gizmos/RotationGizmo.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AStar/Navigation/PlayerNavigation.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AStar/AStarPanel.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AStar/AStar.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AStar/GridControl.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2WxeTR8ywwcI9LUYMD7ddiflXdh" />
@@ -56,6 +59,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -105,7 +110,14 @@
       <workItem from="1698041440486" duration="3560000" />
       <workItem from="1699242129446" duration="12263000" />
       <workItem from="1699319334590" duration="116000" />
-      <workItem from="1699320551125" duration="2968000" />
+      <workItem from="1699320551125" duration="6547000" />
+      <workItem from="1699342225920" duration="3116000" />
+      <workItem from="1699405559210" duration="874000" />
+      <workItem from="1699499714786" duration="2612000" />
+      <workItem from="1699507892978" duration="5563000" />
+      <workItem from="1699521326804" duration="1551000" />
+      <workItem from="1699847554266" duration="1326000" />
+      <workItem from="1700125965107" duration="830000" />
     </task>
     <servers />
   </component>
