@@ -70,9 +70,13 @@ public class Util : MonoBehaviour
 
     public static DateTime ConvertLongToDateTime(long d, string dd = "0000")
     {
-        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1, 8, 0, 0));
-        TimeSpan toNow = new TimeSpan(long.Parse(d + dd));
-        DateTime rt = dtStart.Add(toNow);
-        return rt;
+        //DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1, 8, 0, 0));
+        //TimeSpan toNow = new TimeSpan(long.Parse(d + dd));
+        //DateTime rt = dtStart.Add(toNow);
+        //return rt;
+        DateTime dtStart = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), TimeZoneInfo.Local);
+        long lTime = d * 10000;
+        TimeSpan toNow = new TimeSpan(lTime);
+        return dtStart.Add(toNow);
     }
 }
