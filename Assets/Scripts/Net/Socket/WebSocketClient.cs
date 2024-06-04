@@ -1,18 +1,30 @@
-﻿
-public class WebSocketClient
+﻿using System;
+
+namespace Socket
 {
-    public string host { get; private set; }
-    public string name { get; private set; }
-    public bool isOnline { get; private set; }
-
-    //private static WebSocket webSocket;
-
-    public void Init(string _host,string _name,bool _isOnline = true)
+    public class WebSocketClient : IDisposable 
     {
-        host = _host;
-        name = _name;
-        isOnline = _isOnline;
+        public string host { get; private set; }
+        public string name { get; private set; }
+        public bool isOnline { get; private set; }
 
-      //  webSocket = new WebSocket(host);
+
+        //private static WebSocket webSocket;
+
+        public void Init(string _host, string _name, bool _isOnline = true)
+        {
+            host = _host;
+            name = _name;
+            isOnline = _isOnline;
+
+            //  webSocket = new WebSocket(host);
+        }
+
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
+
 }
